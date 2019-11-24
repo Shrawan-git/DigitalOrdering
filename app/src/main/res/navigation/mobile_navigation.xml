@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.digitalorder.np.ui.dashboard.DashboardFragment"
-        android:label="book"
+        android:label="dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.digitalorder.np.ui.notifications.NotificationsFragment"
-        android:label="chat"
+        android:label="notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

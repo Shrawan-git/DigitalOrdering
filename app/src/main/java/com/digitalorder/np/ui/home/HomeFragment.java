@@ -11,25 +11,39 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalorder.np.R;
+import com.digitalorder.np.adapter.ContactsAdapter;
+import com.digitalorder.np.model.Contacts;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
+    RecyclerView viewR;
 
-    private HomeViewModel homeViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        viewR = root.findViewById(R.id.recycleV);
+
+        // Create a list of contacts to display in RecyclerView
+        List<Contacts> contactsList = new ArrayList<>();
+        // Adding all the contacts object in list
+        contactsList.add(new Contacts("Salami Pizza" ,"$550",R.drawable.pizza));
+        contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
+
+        ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
+        viewR.setAdapter(contactsAdapter);
+
+        //Display all the contacts in linear layour (vertically)
+        viewR.setLayoutManager(new LinearLayoutManager(getActivity()));
         return root;
     }
 }

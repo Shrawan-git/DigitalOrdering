@@ -14,6 +14,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Username"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -27,14 +29,17 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edname" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="288dp"
-        android:layout_height="278dp"
+        android:layout_width="226dp"
+        android:layout_height="192dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +52,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="Login"
+        android:textColor="@color/cardview_light_background"
+        android:background="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edpwd" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
