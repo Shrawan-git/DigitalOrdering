@@ -10,27 +10,26 @@
         android:id="@+id/edname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/et_custom"
         android:hint="Username"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:inputType="textPersonName"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/edpwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/et_custom"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edname" />
@@ -46,14 +45,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Remember me"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edpwd" />
+
     <Button
         android:id="@+id/btnlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/cardview_dark_background"
         android:text="Login"
         android:textColor="@color/cardview_light_background"
-        android:background="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

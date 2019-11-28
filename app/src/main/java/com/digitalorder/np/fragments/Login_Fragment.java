@@ -1,11 +1,14 @@
 package com.digitalorder.np.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,8 @@ public class Login_Fragment extends Fragment {
                 if (Username.equals("admin") && Password.equals("admin")) {
                     edname.setText("");
                     edpwd.setText("");
-                    Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+
+                  SaveSharedPreferences();
 
                     Intent intent = new Intent(getActivity(), DashboardActivity.class);
                     intent.putExtra(EXTRA_MESSAGE, Username);
@@ -58,6 +62,18 @@ public class Login_Fragment extends Fragment {
                 }
             }
         });
+
         return view;
-    }}
+    }
+    private void SaveSharedPreferences() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("username",Username);
+        editor.putString("password", Password);
+        editor.commit();
+
+        Toast.makeText(getActivity(), "Successfully registered", Toast.LENGTH_SHORT).show();
+    }
+}
 
