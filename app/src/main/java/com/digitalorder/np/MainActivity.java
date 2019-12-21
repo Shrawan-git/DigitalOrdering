@@ -22,15 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewPager = findViewById(R.id.viewPager);
-        tabId = findViewById(R.id.tabId);
 
-        tabId.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new Login_Fragment(), "Login");
-        viewPagerAdapter.addFragment(new Signup_Fragment(), "Signup");
+        viewPagerAdapter.addFragment(new Login_Fragment());
+        viewPagerAdapter.addFragment(new Signup_Fragment());
 
         viewPager.setAdapter(viewPagerAdapter);
-        tabId.setupWithViewPager(viewPager);
 
     }
 }

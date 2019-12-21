@@ -24,8 +24,6 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     RecyclerView viewR;
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -37,6 +35,10 @@ public class HomeFragment extends Fragment {
         List<Contacts> contactsList = new ArrayList<>();
         // Adding all the contacts object in list
         contactsList.add(new Contacts("Salami Pizza" ,"$550",R.drawable.pizza));
+        contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
+        contactsList.add(new Contacts("Salami Pizza" ,"$550",R.drawable.pizza));
+        contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
+        contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
         contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
 
         ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);

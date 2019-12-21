@@ -1,130 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="139dp"
-        android:background="#606060FF"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:text="Food Menu"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleV"
-        android:layout_width="409dp"
-        android:layout_height="652dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="88dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="410dp"
+            android:layout_height="85dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:text="Food Menu"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#606060FF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/pizzaButton"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pizza"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="62dp"
-                android:background="@drawable/white_button"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
+                android:layout_height="50dp"
+                android:layout_marginTop="88dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <Button
-                android:id="@+id/burgerButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Burger"
-                android:textColor="@color/cardview_light_background"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="62dp"
-                android:background="@drawable/black_button"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/saladButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Salad"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="62dp"
-                android:background="@drawable/white_button"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
+                    <Button
+                        android:id="@+id/pizzaButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/white_button"
+                        android:text="Pizza"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="62dp" />
 
-            <Button
-                android:id="@+id/seafoodButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Seafood"
-                android:textColor="@color/cardview_light_background"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="62dp"
-                android:background="@drawable/black_button"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
+                    <Button
+                        android:id="@+id/burgerButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/black_button"
+                        android:text="Burger"
+                        android:textColor="@color/cardview_light_background"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="62dp" />
 
-            <Button
-                android:id="@+id/soupButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Soup"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="62dp"
-                android:background="@drawable/white_button"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
+                    <Button
+                        android:id="@+id/saladButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/white_button"
+                        android:text="Salad"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="62dp" />
 
+                    <Button
+                        android:id="@+id/seafoodButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/black_button"
+                        android:text="Seafood"
+                        android:textColor="@color/cardview_light_background"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="62dp" />
 
+                    <Button
+                        android:id="@+id/soupButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/white_button"
+                        android:text="Soup"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="62dp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
-    </HorizontalScrollView>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleV"
+            android:layout_width="411dp"
+            android:layout_height="582dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="53dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
