@@ -1,5 +1,9 @@
-package com.digitalorder.np.fragments;
+package com.digitalorder.np;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -7,34 +11,22 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.digitalorder.np.R;
-
-import static android.app.Activity.RESULT_OK;
-
-
-public class Signup_Fragment extends Fragment {
-    ImageView profile_image;
+public class RegisterActivity extends AppCompatActivity {
+    private ImageView profile_image;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_signup_, container, false);
-        profile_image= view.findViewById(R.id.profile_image);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        profile_image= findViewById(R.id.profile_image);
 
         //check permission
         checkPermission();
@@ -42,17 +34,17 @@ public class Signup_Fragment extends Fragment {
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(getActivity(),profile_image);
+                PopupMenu popupMenu = new PopupMenu(RegisterActivity.this,profile_image);
                 popupMenu.getMenuInflater().inflate(R.menu.pop_up,popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getTitle().toString().equals("Open Camera")){
-                           loadCamera();
+                            loadCamera();
                         }
                         if(item.getTitle().toString().equals("Open Gallary")){
-                             loadGallary();
+                            loadGallary();
                         }
                         return true;
                     }
@@ -60,7 +52,7 @@ public class Signup_Fragment extends Fragment {
                 popupMenu.show();
             }
         });
-        return view;
+
     }
     private void loadGallary() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -68,21 +60,19 @@ public class Signup_Fragment extends Fragment {
         startActivityForResult(intent, 1);
     }
     private  void checkPermission(){
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(), new String[]
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]
                     {
                             Manifest.permission.CAMERA
                     },0);
         }
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(), new String[]
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]
                     {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    },0);
+                    },1);
         }
-
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -95,7 +85,7 @@ public class Signup_Fragment extends Fragment {
         if(requestCode==1 && resultCode==RESULT_OK) {
 
             if (data == null) {
-                Toast.makeText(getActivity(), "Plese select an image", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Plese select an image", Toast.LENGTH_LONG).show();
             }
             Uri uri = data.getData();
             profile_image.setImageURI(uri);
@@ -103,7 +93,7 @@ public class Signup_Fragment extends Fragment {
     }
     private  void loadCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(getContext().getPackageManager()) != null){
+        if(intent.resolveActivity(this.getPackageManager()) != null){
             startActivityForResult(intent, 0);
         }
 

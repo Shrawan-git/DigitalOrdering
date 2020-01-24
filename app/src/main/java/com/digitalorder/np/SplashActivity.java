@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import com.digitalorder.np.fragments.Login_Fragment;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -37,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }else{
-            Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
             startActivity(intent);
             finish();
         }
