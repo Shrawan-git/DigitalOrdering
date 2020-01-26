@@ -30,6 +30,16 @@
         android:background="@drawable/et_custom"/>
 
     <EditText
+        android:id="@+id/etemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="Email"
+        android:padding="20dp"
+        android:background="@drawable/et_custom"/>
+
+    <EditText
         android:id="@+id/etpwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:hint="Confirm password"
+        android:hint="Confirm Password"
         android:inputType="textPassword"
         android:padding="20dp"
         android:background="@drawable/et_custom"/>
