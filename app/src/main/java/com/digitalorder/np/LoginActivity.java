@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digitalorder.np.bll.LoginBLL;
+import com.digitalorder.np.strictmode.StrictModeClass;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         edname = findViewById(R.id.edname);
         edpwd = findViewById(R.id.edpwd);
         txtsignup = findViewById(R.id.txtsignup);
-        txtsignup.setPaintFlags(txtsignup.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
+        txtsignup.setPaintFlags(txtsignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         txtsignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,36 +47,36 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Username = edname.getText().toString().trim();
-                Password = edpwd.getText().toString().trim();
-
-                if (Username.equals("admin") && Password.equals("admin")) {
-                    edname.setText("");
-                    edpwd.setText("");
-
-                    SaveSharedPreferences();
-
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    intent.putExtra(EXTRA_MESSAGE, Username);
-                    startActivity(intent);
-                } else {
-                    edname.setError("Invalid username");
-                    edpwd.setError("Invalid password");
-                }
+                login();
             }
         });
-
     }
-    private void SaveSharedPreferences() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences("User", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    private void login(){
+        String name = edname.getText().toString();
+        String password = edpwd.getText().toString();
 
-        editor.putString("username",Username);
-        editor.putString("password", Password);
-        editor.commit();
+        LoginBLL loginBLL = new LoginBLL();
 
-        Toast.makeText(this, "Successfully registered", Toast.LENGTH_SHORT).show();
+        StrictModeClass.StrictMode();
+        if (loginBLL.checkUser(name, password)) {
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Either username or password is incorrect", Toast.LENGTH_SHORT).show();
+            edname.requestFocus();
+        }
     }
+//    private void SaveSharedPreferences() {
+//        SharedPreferences sharedPreferences = this.getSharedPreferences("User", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString("username",Username);
+//        editor.putString("password", Password);
+//        editor.commit();
+//
+//        Toast.makeText(this, "Successfully registered", Toast.LENGTH_SHORT).show();
+//    }
 }
 
 

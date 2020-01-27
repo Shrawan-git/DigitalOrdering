@@ -20,9 +20,8 @@ public interface UsersAPI {
     @POST("user/signup")
     Call<SignUpResponse> registerUser(@Body Users users);
 
-    @FormUrlEncoded
     @POST("user/login")
-    Call<String>  checkUser(@Field("username") String username, @Field("password") String password);
+    Call<SignUpResponse> checkUser(@Body Users users);
 
     @Multipart
     @POST("upload")

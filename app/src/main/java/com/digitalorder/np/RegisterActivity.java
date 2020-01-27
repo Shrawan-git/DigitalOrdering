@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
@@ -14,7 +13,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,9 +31,6 @@ import com.digitalorder.np.url.Url;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -107,22 +102,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-    private File createImageFile() throws IOException{
-        String timeStamp =
-                new SimpleDateFormat("yyyyMMdd_HHmmss",
-                        Locale.getDefault()).format(new Date());
-        String imageFileName = "IMG_" + timeStamp + "_";
-        File storageDir =
-                getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        imagePath = image.getAbsolutePath();
-        return image;
-    }
 
     private boolean validate() {
         boolean status=true;
@@ -175,7 +154,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
-
     private String getRealPathFromUri(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(),
@@ -219,17 +197,8 @@ public class RegisterActivity extends AppCompatActivity {
     private  void loadCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(intent.resolveActivity(this.getPackageManager()) != null){
-            File photoFile =null;
-            try{
-                photoFile = createImageFile();
-            }catch (IOException ex){
-
-            }
-            if (photoFile != null){
-                Uri photoURI = FileProvider.getUriForFile(this, "shrawan.provider", photoFile);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
             startActivityForResult(intent, 0);
-        }}
+        }
 
     }
     private void saveImageOnly() {
