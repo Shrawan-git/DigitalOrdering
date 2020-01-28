@@ -5,12 +5,15 @@ public class Users {
     private String password;
     private String email;
     private String image;
+    private String gender;
 
-    public Users(String name, String email, String password, String image) {
+    public Users(String name, String email, String password, String image, String gender) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.image = image;
+        this.gender= gender;
+
     }
 
     public String getName() { return name; }
@@ -33,6 +36,14 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getImage() { return image; }

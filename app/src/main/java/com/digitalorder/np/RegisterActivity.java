@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.digitalorder.np.api.UsersAPI;
@@ -43,7 +45,10 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView profile_image;
     private EditText etname,etpwd,etemail,etcpwd;
     private Button btn;
+    private RadioGroup myRadioGroup;
+    private RadioButton male,female,others;
     String imagePath;
+    String gender;
     private String imageName = "";
 
     @Override
@@ -56,6 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
         etemail = findViewById(R.id.etemail);
         etpwd = findViewById(R.id.etpwd);
         etcpwd = findViewById(R.id.etcpwd);
+        myRadioGroup = findViewById(R.id.myRadioGroup);
+        male = findViewById(R.id.male);
+        female = findViewById(R.id.female);
+        others = findViewById(R.id.others);
         btn = findViewById(R.id.btn);
 
         //check permission
@@ -167,11 +176,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public  void signUp(){
-        String name = etname.getText().toString();
-        String email = etemail.getText().toString();
-        String password = etpwd.getText().toString();
+        String name = etname.getText().toString().trim();
+        String email = etemail.getText().toString().trim();
+        String password = etpwd.getText().toString().trim();
 
-        Users users = new Users(name, email, password, imageName);
+        int selectGender = myRadioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = findViewById(selectGender);
+        gender= radioButton.getText().toString().trim();
+
+        Users users = new Users(name, email, password, imageName, gender);
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<SignUpResponse> signUpCall = usersAPI.registerUser(users);
