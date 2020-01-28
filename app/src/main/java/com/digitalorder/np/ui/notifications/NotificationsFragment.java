@@ -39,6 +39,7 @@ import static com.digitalorder.np.url.Url.imagePath;
 
 public class NotificationsFragment extends Fragment {
    private ImageView imgProgile;
+   private TextView tvName,tvEmail,tvGender;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -46,6 +47,9 @@ public class NotificationsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         imgProgile = root.findViewById(R.id.imgProgile);
+        tvName = root.findViewById(R.id.tvName);
+        tvEmail = root.findViewById(R.id.tvEmail);
+        tvGender = root.findViewById(R.id.tvGender);
         loadCurrentUser();
         return root;
 
@@ -74,6 +78,15 @@ public class NotificationsFragment extends Fragment {
                     String imgPath = Url.imagePath +  response.body().getImage();
                     URL url = new URL(imgPath);
                     imgProgile.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+
+                    String Name= response.body().getName();
+                    String Email= response.body().getEmail();
+                    String Gender= response.body().getGender();
+
+                    tvName.setText(Name);
+                    tvEmail.setText(Email);
+                    tvGender.setText(Gender);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
