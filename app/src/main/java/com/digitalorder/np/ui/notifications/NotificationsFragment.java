@@ -54,7 +54,7 @@ public class NotificationsFragment extends Fragment {
     private void loadCurrentUser(){
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        final String url = "http://10.0.2.2:3024//uploads/";
+//        final String url = "http://10.0.2.2:3024/uploads/";
 
         Call<Users> userCall = usersAPI.getUserDetails(Url.token);
 
@@ -65,13 +65,14 @@ public class NotificationsFragment extends Fragment {
                     Toast.makeText(getActivity(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String imgPath = url +  response.body().getImage();
 
-                Picasso.get().load(imgPath).into(imgProgile);
+//
+//                Picasso.get().load(imgPath).into(imgProgile);
 
                 StrictModeClass.StrictMode();
                 try {
-                    URL url = new URL(imagePath);
+                    String imgPath = Url.imagePath +  response.body().getImage();
+                    URL url = new URL(imgPath);
                     imgProgile.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
                 } catch (Exception e) {
                     e.printStackTrace();
