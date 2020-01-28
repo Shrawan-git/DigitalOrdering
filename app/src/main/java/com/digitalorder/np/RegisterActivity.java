@@ -34,6 +34,7 @@ import com.digitalorder.np.url.Url;
 import java.io.File;
 import java.io.IOException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -42,7 +43,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-    private ImageView profile_image;
+    private CircleImageView profile_image;
     private EditText etname,etpwd,etemail,etcpwd;
     private Button btn;
     private RadioGroup myRadioGroup;

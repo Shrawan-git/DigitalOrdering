@@ -1,6 +1,7 @@
 package com.digitalorder.np.ui.notifications;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.digitalorder.np.CurrentLocation;
 import com.digitalorder.np.DashboardActivity;
 import com.digitalorder.np.R;
 import com.digitalorder.np.api.UsersAPI;
@@ -31,6 +34,7 @@ import com.squareup.picasso.Picasso;
 import java.io.InputStream;
 import java.net.URL;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,8 +42,9 @@ import retrofit2.Response;
 import static com.digitalorder.np.url.Url.imagePath;
 
 public class NotificationsFragment extends Fragment {
-   private ImageView imgProgile;
+   private CircleImageView imgProgile;
    private TextView tvName,tvEmail,tvGender;
+   private ImageButton tvLocation;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,6 +55,7 @@ public class NotificationsFragment extends Fragment {
         tvName = root.findViewById(R.id.tvName);
         tvEmail = root.findViewById(R.id.tvEmail);
         tvGender = root.findViewById(R.id.tvGender);
+        tvLocation = root.findViewById(R.id.tvLocation);
         loadCurrentUser();
         return root;
 
@@ -98,6 +104,15 @@ public class NotificationsFragment extends Fragment {
 //                Toast.makeText(getActivity(), "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        tvLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CurrentLocation.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
+
 }
