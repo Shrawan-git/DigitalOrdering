@@ -6,6 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +28,11 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtsignup;
     private Button btnlogin;
     private String Username, Password;
+    private SensorManager sm;
+
+    private float acelVal; //Current acceleration value and gravity
+    private float acelLast; //Last acceleration value and gravity
+    private float shake; //Acceleration value differ from gravity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +59,38 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+
+        sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sm.registerListener(sensorListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+
+        acelVal = SensorManager.GRAVITY_EARTH;
+        acelLast = SensorManager.GRAVITY_EARTH;
+        shake = 0.00f;
     }
+
+    private final SensorEventListener sensorListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+
+            acelLast = acelVal;
+            acelVal = (float) Math.sqrt((double) (x*x + y*y + z*z));
+            float delta = acelVal - acelLast;
+            shake = shake * 0.9f + delta;
+
+            if (shake > 12) {
+                Toast.makeText(LoginActivity.this, "This is the android assignment", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
+
     private void login(){
         String name = edname.getText().toString();
         String password = edpwd.getText().toString();
