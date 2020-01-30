@@ -42,12 +42,12 @@ public class HomeFragment extends Fragment {
                 // Create a list of contacts to display in RecyclerView
                 List<Contacts> contactsList = new ArrayList<>();
                 // Adding all the contacts object in list
-                contactsList.add(new Contacts("Salami Pizza" ,"$550",R.drawable.pizza));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
-                contactsList.add(new Contacts("Salami Pizza" ,"$550",R.drawable.pizza));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500",R.drawable.pizza1));
+                contactsList.add(new Contacts("Salami Pizza" ,"$550", "Pizza", R.drawable.pizza));
+                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                contactsList.add(new Contacts("Salami Pizza" ,"$550", "Pizza",R.drawable.pizza));
+                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
 
                 ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
                 viewR.setAdapter(contactsAdapter);
@@ -63,9 +63,9 @@ public class HomeFragment extends Fragment {
                 // Create a list of contacts to display in RecyclerView
                 List<Contacts> contactsList = new ArrayList<>();
                 // Adding all the contacts object in list
-                contactsList.add(new Contacts("veggie burger" ,"$550",R.drawable.burger));
-                contactsList.add(new Contacts("ham burger" ,"$500",R.drawable.burger));
-                contactsList.add(new Contacts("Salami burger" ,"$550",R.drawable.burger));
+                contactsList.add(new Contacts("veggie burger" ,"$550", "Burger",R.drawable.burger));
+                contactsList.add(new Contacts("ham burger" ,"$500", "Burger",R.drawable.burger));
+                contactsList.add(new Contacts("Salami burger" ,"$550", "Burger",R.drawable.burger));
 
                 ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
                 viewR.setAdapter(contactsAdapter);
@@ -81,9 +81,9 @@ public class HomeFragment extends Fragment {
                 // Create a list of contacts to display in RecyclerView
                 List<Contacts> contactsList = new ArrayList<>();
                 // Adding all the contacts object in list
-                contactsList.add(new Contacts("veggie salad" ,"$550",R.drawable.salad));
-                contactsList.add(new Contacts("mix salad" ,"$500",R.drawable.salad1));
-                contactsList.add(new Contacts("fresh salad" ,"$550",R.drawable.salad));
+                contactsList.add(new Contacts("veggie salad" ,"$550", "Salad",R.drawable.salad));
+                contactsList.add(new Contacts("mix salad" ,"$500", "Salad",R.drawable.salad1));
+                contactsList.add(new Contacts("fresh salad" ,"$550", "Salad",R.drawable.salad));
 
                 ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
                 viewR.setAdapter(contactsAdapter);

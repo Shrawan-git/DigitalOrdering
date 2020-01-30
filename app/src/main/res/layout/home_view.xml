@@ -42,15 +42,28 @@
         cardView:layout_constraintStart_toStartOf="parent"
         cardView:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="44dp"
         android:text="Price"
+        android:textSize="18dp"
+        cardView:layout_constraintStart_toStartOf="parent"
+        cardView:layout_constraintTop_toTopOf="@+id/tvName" />
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="76dp"
+        android:text="Category"
+        android:textSize="18dp"
+        cardView:layout_constraintBottom_toBottomOf="parent"
         cardView:layout_constraintStart_toStartOf="parent"
         cardView:layout_constraintTop_toTopOf="@+id/tvName" />
 

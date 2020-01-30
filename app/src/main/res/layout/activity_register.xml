@@ -101,7 +101,7 @@
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/cardview_dark_background"
+        android:background="@drawable/black_button"
         android:textColor="@color/cardview_light_background"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
