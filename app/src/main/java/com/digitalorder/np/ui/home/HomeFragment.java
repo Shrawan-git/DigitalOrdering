@@ -5,19 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalorder.np.R;
 import com.digitalorder.np.adapter.ContactsAdapter;
-import com.digitalorder.np.model.Contacts;
+import com.digitalorder.np.model.OrderMod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,16 +36,16 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Create a list of contacts to display in RecyclerView
-                List<Contacts> contactsList = new ArrayList<>();
+                List<OrderMod> orderModList = new ArrayList<>();
                 // Adding all the contacts object in list
-                contactsList.add(new Contacts("Salami Pizza" ,"$550", "Pizza", R.drawable.pizza));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
-                contactsList.add(new Contacts("Salami Pizza" ,"$550", "Pizza",R.drawable.pizza));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
-                contactsList.add(new Contacts("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                orderModList.add(new OrderMod("Salami Pizza" ,"$550", "Pizza", R.drawable.pizza));
+                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                orderModList.add(new OrderMod("Salami Pizza" ,"$550", "Pizza",R.drawable.pizza));
+                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
 
-                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
+                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
                 viewR.setAdapter(contactsAdapter);
 
                 //Display all the contacts in linear layour (vertically)
@@ -61,13 +57,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Create a list of contacts to display in RecyclerView
-                List<Contacts> contactsList = new ArrayList<>();
+                List<OrderMod> orderModList = new ArrayList<>();
                 // Adding all the contacts object in list
-                contactsList.add(new Contacts("veggie burger" ,"$550", "Burger",R.drawable.burger));
-                contactsList.add(new Contacts("ham burger" ,"$500", "Burger",R.drawable.burger));
-                contactsList.add(new Contacts("Salami burger" ,"$550", "Burger",R.drawable.burger));
+                orderModList.add(new OrderMod("veggie burger" ,"$550", "Burger",R.drawable.burger));
+                orderModList.add(new OrderMod("ham burger" ,"$500", "Burger",R.drawable.burger));
+                orderModList.add(new OrderMod("Salami burger" ,"$550", "Burger",R.drawable.burger));
 
-                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
+                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
                 viewR.setAdapter(contactsAdapter);
 
                 //Display all the contacts in linear layour (vertically)
@@ -79,13 +75,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Create a list of contacts to display in RecyclerView
-                List<Contacts> contactsList = new ArrayList<>();
+                List<OrderMod> orderModList = new ArrayList<>();
                 // Adding all the contacts object in list
-                contactsList.add(new Contacts("veggie salad" ,"$550", "Salad",R.drawable.salad));
-                contactsList.add(new Contacts("mix salad" ,"$500", "Salad",R.drawable.salad1));
-                contactsList.add(new Contacts("fresh salad" ,"$550", "Salad",R.drawable.salad));
+                orderModList.add(new OrderMod("veggie salad" ,"$550", "Salad",R.drawable.salad));
+                orderModList.add(new OrderMod("mix salad" ,"$500", "Salad",R.drawable.salad1));
+                orderModList.add(new OrderMod("fresh salad" ,"$550", "Salad",R.drawable.salad));
 
-                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),contactsList);
+                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
                 viewR.setAdapter(contactsAdapter);
 
                 //Display all the contacts in linear layour (vertically)
