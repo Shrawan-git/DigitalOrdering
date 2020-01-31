@@ -22,4 +22,10 @@
         android:name="com.digitalorder.np.ui.profile.ProfileFragment"
         android:label="notifications"
         tools:layout="@layout/fragment_profile" />
+    <action android:id="@+id/action_global_navigation_notifications" app:destination="@id/navigation_notifications" />
+    <fragment
+        android:id="@+id/navigation_aboutus"
+        android:name="com.digitalorder.np.ui.aboutus.AboutFragment"
+        android:label="aboutus"
+        tools:layout="@layout/fragment_aboutus" />
 </navigation>
