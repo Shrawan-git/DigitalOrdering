@@ -2,9 +2,6 @@ package com.digitalorder.np;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.digitalorder.np.api.OrdersAPI;
-import com.digitalorder.np.model.OrderMod;
+import com.digitalorder.np.api.UsersAPI;
+import com.digitalorder.np.model.Product;
 import com.digitalorder.np.url.Url;
 
 import retrofit2.Call;
@@ -57,38 +54,31 @@ public class Onclickfood extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.orderForm){
-            OrdersAPI ordersAPI = Url.getInstance().create(OrdersAPI.class);
 
             String Foodname = tv_name.getText().toString();
             String Price = tv_price.getText().toString();
             String Category = tv_category.getText().toString();
-          //  Bitmap bitmap= BitmapFactory.decodeResource(getResources(), Image);
 
+            Product product= new Product(Foodname,Price,Category);
 
-           // OrderMod orderMod = new OrderMod(Foodname, Price, Category);
+            UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+            Call<String> orderCall = usersAPI.orderUser(product);
 
-          //  Call<Void> orderCall = ordersAPI.orderFood(orderMod);
-//
-//            orderCall.enqueue(new Callback<Void>() {
-//                @Override
-//                public void onResponse(Call<Void> call, Response<Void> response) {
-//                    if (response.isSuccessful()){
-//                        Toast.makeText(Onclickfood.this,"Successful", Toast.LENGTH_LONG).show();
-//                    }
-//                    else {
-//                        Toast.makeText(Onclickfood.this,"ERROR", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Void> call, Throwable t) {
-//
-//                }
-//            });
+            orderCall.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(Onclickfood.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Toast.makeText(Onclickfood.this, "Ordered", Toast.LENGTH_SHORT).show();
+                }
 
-
-
-
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Toast.makeText(Onclickfood.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

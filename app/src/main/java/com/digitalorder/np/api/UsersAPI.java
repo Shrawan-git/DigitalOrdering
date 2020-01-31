@@ -1,5 +1,6 @@
 package com.digitalorder.np.api;
 
+import com.digitalorder.np.model.Product;
 import com.digitalorder.np.model.UpdateMod;
 import com.digitalorder.np.model.Users;
 import com.digitalorder.np.serverresponse.ImageResponse;
@@ -21,6 +22,9 @@ public interface UsersAPI {
 
     @POST("user/signup")
     Call<SignUpResponse> registerUser(@Body Users users);
+
+    @POST("user/order")
+    Call<String> orderUser(@Body Product product);
 
     @POST("user/login")
     Call<SignUpResponse> checkUser(@Body Users users);
