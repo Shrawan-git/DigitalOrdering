@@ -41,9 +41,7 @@ public class HomeFragment extends Fragment {
                 orderModList.add(new OrderMod("Salami Pizza" ,"$550", "Pizza", R.drawable.pizza));
                 orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
                 orderModList.add(new OrderMod("Salami Pizza" ,"$550", "Pizza",R.drawable.pizza));
-                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
-                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
-                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
+
 
                 ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
                 viewR.setAdapter(contactsAdapter);

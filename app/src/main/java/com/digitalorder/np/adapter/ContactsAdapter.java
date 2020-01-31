@@ -2,6 +2,8 @@ package com.digitalorder.np.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.digitalorder.np.Onclickfood;
 import com.digitalorder.np.R;
 import com.digitalorder.np.model.OrderMod;
 
+import java.nio.FloatBuffer;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -39,6 +42,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     @Override
     public void onBindViewHolder(@NonNull ContactsViewHolder holder, int position) {
         final OrderMod orderMod = orderModList.get(position);
+
         holder.imgProfile.setImageResource(orderMod.getImageId());
         holder.tvName.setText(orderMod.getName());
         holder.tvPrice.setText(orderMod.getPrice());

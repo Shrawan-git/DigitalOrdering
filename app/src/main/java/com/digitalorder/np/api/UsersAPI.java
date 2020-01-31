@@ -1,5 +1,6 @@
 package com.digitalorder.np.api;
 
+import com.digitalorder.np.model.UpdateMod;
 import com.digitalorder.np.model.Users;
 import com.digitalorder.np.serverresponse.ImageResponse;
 import com.digitalorder.np.serverresponse.SignUpResponse;
@@ -13,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 
 public interface UsersAPI {
@@ -29,4 +31,7 @@ public interface UsersAPI {
 
     @GET("user/me")
     Call<Users> getUserDetails(@Header("Authorization") String token);
+
+    @PUT("user/UserUpdateAndroid")
+    Call<String> updateProfile(@Body UpdateMod updateMod);
 }

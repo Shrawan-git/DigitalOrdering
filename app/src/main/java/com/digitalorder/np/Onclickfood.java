@@ -2,6 +2,9 @@ package com.digitalorder.np;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +15,10 @@ import android.widget.Toast;
 import com.digitalorder.np.api.OrdersAPI;
 import com.digitalorder.np.model.OrderMod;
 import com.digitalorder.np.url.Url;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Onclickfood extends AppCompatActivity implements View.OnClickListener {
     ImageView img_view;
@@ -45,9 +52,6 @@ public class Onclickfood extends AppCompatActivity implements View.OnClickListen
 //                Picasso.with(this).load(image).into(img_view);
             }
             Toast.makeText(this,"Dish Name" + tv_name.getText().toString() , Toast.LENGTH_LONG).show();
-
-
-
         }
 
     @Override
@@ -58,9 +62,30 @@ public class Onclickfood extends AppCompatActivity implements View.OnClickListen
             String Foodname = tv_name.getText().toString();
             String Price = tv_price.getText().toString();
             String Category = tv_category.getText().toString();
+          //  Bitmap bitmap= BitmapFactory.decodeResource(getResources(), Image);
 
 
-            OrderMod orderMod = new OrderMod(Foodname, Price, Category, )
+           // OrderMod orderMod = new OrderMod(Foodname, Price, Category);
+
+          //  Call<Void> orderCall = ordersAPI.orderFood(orderMod);
+//
+//            orderCall.enqueue(new Callback<Void>() {
+//                @Override
+//                public void onResponse(Call<Void> call, Response<Void> response) {
+//                    if (response.isSuccessful()){
+//                        Toast.makeText(Onclickfood.this,"Successful", Toast.LENGTH_LONG).show();
+//                    }
+//                    else {
+//                        Toast.makeText(Onclickfood.this,"ERROR", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Void> call, Throwable t) {
+//
+//                }
+//            });
+
 
 
 

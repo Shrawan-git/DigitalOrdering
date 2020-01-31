@@ -1,6 +1,7 @@
 package com.digitalorder.np.model;
 
 public class Users {
+   // private String _id;
     private String name;
     private String password;
     private String email;
@@ -48,4 +49,12 @@ public class Users {
 
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
+
+//    public String get_id() {
+//        return _id;
+//    }
+//
+//    public void set_id(String _id) {
+//        this._id = _id;
+//    }
 }

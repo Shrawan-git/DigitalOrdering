@@ -7,6 +7,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface OrdersAPI {
-    @POST("FoodOrder")
+    @POST("order")
     Call<Void> orderFood(@Body OrderMod orderMod);
 }
