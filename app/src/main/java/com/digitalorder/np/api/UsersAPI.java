@@ -33,5 +33,5 @@ public interface UsersAPI {
     Call<Users> getUserDetails(@Header("Authorization") String token);
 
     @PUT("user/UserUpdateAndroid")
-    Call<String> updateProfile(@Body UpdateMod updateMod);
+    Call<String> updateProfile(@Header("Authorization") String token,@Body UpdateMod updateMod);
 }

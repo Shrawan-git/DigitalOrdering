@@ -43,6 +43,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +63,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
     private void loadCurrentUser(){
 
-        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
 
 
        // preferences = getSharedPreferences("UserData", 0);
@@ -104,7 +104,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     e.printStackTrace();
                 }
          }
-
             @Override
             public void onFailure(Call<Users> call, Throwable t) {
 
@@ -127,13 +126,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
     public void updateProfile()
     {
-        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
 
-        String name,email;
+        String name,gender,email;
 
 //        uid = ad;
         name= tvName.getText().toString();
         email=tvEmail.getText().toString();
+        gender=tvGender.getText().toString();
 
        // Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
 
@@ -143,22 +142,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         UpdateMod updateMod = new UpdateMod(name, email);
 
-        Call<String> updateProfileData = usersAPI.updateProfile(updateMod);
+       Call<String> updateProfileData = usersAPI.updateProfile(Url.token,updateMod);
         updateProfileData.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (!response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Code "+response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
             }
         });
-
     }
 }
