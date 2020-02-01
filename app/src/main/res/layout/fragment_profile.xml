@@ -75,18 +75,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/tvLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:src="@drawable/location"
-        android:layout_margin="10dp"/>
+        <ImageButton
+            android:id="@+id/tvLocation"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/location" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Location"
+        android:text="My Location"
         android:layout_margin="20dp"
         android:textSize="20dp"/>
 
