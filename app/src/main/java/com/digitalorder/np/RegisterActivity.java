@@ -98,22 +98,33 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etpwd.getText().toString().equals(etcpwd.getText().toString())) {
                     if (validate()) {
-                        if(validateEmail()){
-                        saveImageOnly();
-                        signUp();
+                        if(validateEmail()) {
+                            if (validatePhone()) {
+                                saveImageOnly();
+                                signUp();
 
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        }
                 } else {
                     Toast.makeText(RegisterActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
                     etpwd.requestFocus();
                     return;
                 }
-            }}
+            }
+                }
         });
-
     }
+    private boolean validatePhone() {
+        boolean status=true;
+        if (etphone.getText().toString().length() < 10 || etphone.length() > 13) {
+            etphone.setError("Not a valid phone number");
+            status = false;
+        }
+            return status;
+        }
+
     private boolean validateEmail() {
         String regEmail = etemail.getText().toString().trim();
         if (regEmail.isEmpty()) {
@@ -195,7 +206,6 @@ public class RegisterActivity extends AppCompatActivity {
         String email = etemail.getText().toString().trim();
         String phone = etphone.getText().toString().trim();
         String password = etpwd.getText().toString().trim();
-
 
         int selectGender = myRadioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(selectGender);
