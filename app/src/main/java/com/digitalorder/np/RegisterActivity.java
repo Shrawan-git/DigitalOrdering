@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -96,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etpwd.getText().toString().equals(etcpwd.getText().toString())) {
                     if (validate()) {
+                        if(validateEmail()){
                         saveImageOnly();
                         signUp();
 
@@ -107,9 +109,22 @@ public class RegisterActivity extends AppCompatActivity {
                     etpwd.requestFocus();
                     return;
                 }
-            }
+            }}
         });
 
+    }
+    private boolean validateEmail() {
+        String regEmail = etemail.getText().toString().trim();
+        if (regEmail.isEmpty()) {
+            etemail.setError("Required");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(regEmail).matches()) {
+            etemail.setError("Please enter a valid email");
+            return false;
+        } else {
+            etemail.setError(null);
+            return true;
+        }
     }
 
     private boolean validate() {
@@ -120,7 +135,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return status;
     }
-
 
     private void loadGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
