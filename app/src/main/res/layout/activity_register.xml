@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,17 +7,23 @@
     android:orientation="vertical"
     tools:context=".RegisterActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="wrap_content"
-        android:layout_height="187dp"
+        android:layout_height="161dp"
         android:layout_gravity="center"
         android:src="@drawable/camera" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Take a photo"
+        android:text="Choose a photo"
+        android:textStyle="italic"
         android:layout_gravity="center"/>
 
     <EditText
@@ -25,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:hint="Name"
+        android:hint="Username"
         android:padding="20dp"
         android:background="@drawable/et_custom"/>
 
@@ -39,6 +45,17 @@
         android:padding="20dp"
         android:background="@drawable/et_custom"/>
 
+    <EditText
+        android:id="@+id/etphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="Phone number"
+        android:inputType="number"
+        android:padding="20dp"
+        android:background="@drawable/et_custom"/>
+
     <RadioGroup
         android:id="@+id/myRadioGroup"
         android:layout_width="330dp"
@@ -47,6 +64,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,5 +127,5 @@
 
 
 
-
 </LinearLayout>
+</ScrollView>

@@ -44,7 +44,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     private CircleImageView profile_image;
-    private EditText etname,etpwd,etemail,etcpwd;
+    private EditText etname,etpwd,etemail,etphone, etcpwd;
     private Button btn;
     private RadioGroup myRadioGroup;
     private RadioButton male,female,others;
@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         profile_image = findViewById(R.id.profile_image);
         etname = findViewById(R.id.etname);
         etemail = findViewById(R.id.etemail);
+        etphone = findViewById(R.id.etphone);
         etpwd = findViewById(R.id.etpwd);
         etcpwd = findViewById(R.id.etcpwd);
         myRadioGroup = findViewById(R.id.myRadioGroup);
@@ -192,13 +193,15 @@ public class RegisterActivity extends AppCompatActivity {
     public  void signUp(){
         String name = etname.getText().toString().trim();
         String email = etemail.getText().toString().trim();
+        String phone = etphone.getText().toString().trim();
         String password = etpwd.getText().toString().trim();
+
 
         int selectGender = myRadioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(selectGender);
         gender= radioButton.getText().toString().trim();
 
-        Users users = new Users(name, email, password, imageName, gender);
+        Users users = new Users(name, email, phone, password, imageName, gender);
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<SignUpResponse> signUpCall = usersAPI.registerUser(users);

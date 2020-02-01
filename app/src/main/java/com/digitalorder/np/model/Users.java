@@ -5,12 +5,14 @@ public class Users {
     private String name;
     private String password;
     private String email;
+    private String phone;
     private String image;
     private String gender;
 
-    public Users(String name, String email, String password, String image, String gender) {
+    public Users(String name, String email, String phone, String password, String image, String gender) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.password = password;
         this.image = image;
         this.gender= gender;
@@ -37,6 +39,14 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getGender() {

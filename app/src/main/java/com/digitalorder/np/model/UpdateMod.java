@@ -3,11 +3,13 @@ package com.digitalorder.np.model;
 public class UpdateMod {
     private String name;
     private String email;
+    private String phone;
     private String gender;
 
-    public UpdateMod(String name, String email) {
+    public UpdateMod(String name, String email,String phone) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -26,4 +28,11 @@ public class UpdateMod {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

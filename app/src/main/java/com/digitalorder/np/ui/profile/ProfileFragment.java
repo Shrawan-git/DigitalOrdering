@@ -36,9 +36,8 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
    private CircleImageView imgProgile;
-   private EditText tvName,tvEmail,tvGender;
+   private EditText tvName,tvEmail,tvGender,tvPhone;
    private Button update;
-   private ImageButton tvLocation;
    String ad;
 
     SharedPreferences preferences;
@@ -53,7 +52,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvName = root.findViewById(R.id.tvName);
         tvEmail = root.findViewById(R.id.tvEmail);
         tvGender = root.findViewById(R.id.tvGender);
-        tvLocation = root.findViewById(R.id.tvLocation);
+        tvPhone = root.findViewById(R.id.tvPhone);
 
         update = root.findViewById(R.id.update);
         update.setOnClickListener(this);
@@ -61,13 +60,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         loadCurrentUser();
         return root;
     }
-    private void loadCurrentUser(){
+    private void loadCurrentUser() {
+        // preferences = getSharedPreferences("UserData", 0);
 
-
-
-       // preferences = getSharedPreferences("UserData", 0);
-
-       // String userid = preferences.getString("uid", null);
+        // String userid = preferences.getString("uid", null);
 
         Call<Users> userCall = usersAPI.getUserDetails(Url.token);
 
@@ -79,42 +75,37 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
 
-//
 //                Picasso.get().load(imgPath).into(imgProgile);
 
                 StrictModeClass.StrictMode();
                 try {
-                    String imgPath = Url.imagePath +  response.body().getImage();
+                    String imgPath = Url.imagePath + response.body().getImage();
                     URL url = new URL(imgPath);
                     imgProgile.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
 
-           //         String userId = response.body().get_id();
-                    String Name= response.body().getName();
-                    String Email= response.body().getEmail();
-                    String Gender= response.body().getGender();
+                    //         String userId = response.body().get_id();
+                    String Name = response.body().getName();
+                    String Email = response.body().getEmail();
+                    String Phone = response.body().getPhone();
+                    String Gender = response.body().getGender();
 
                     tvName.setText(Name);
                     tvEmail.setText(Email);
+                    tvPhone.setText(Phone);
                     tvGender.setText(Gender);
-             //       ad = userId;
+                    //       ad = userId;
 
-         //           Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
+                    //           Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-         }
+            }
+
             @Override
             public void onFailure(Call<Users> call, Throwable t) {
 
 //                Toast.makeText(getActivity(), "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        tvLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CurrentLocation.class);
-                startActivity(intent);
             }
         });
     }
@@ -127,11 +118,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void updateProfile()
     {
 
-        String name,gender,email;
+        String name,gender,email,phone;
 
 //        uid = ad;
         name= tvName.getText().toString();
         email=tvEmail.getText().toString();
+        phone=tvPhone.getText().toString();
         gender=tvGender.getText().toString();
 
        // Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
@@ -140,7 +132,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 //        String userName=preferences.getString("name",null);
 
-        UpdateMod updateMod = new UpdateMod(name, email);
+        UpdateMod updateMod = new UpdateMod(name, email, phone);
 
        Call<String> updateProfileData = usersAPI.updateProfile(Url.token,updateMod);
         updateProfileData.enqueue(new Callback<String>() {
