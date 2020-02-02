@@ -28,10 +28,10 @@ public class SplashActivity extends AppCompatActivity {
     }
     private void checkUser(){
         SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        String username= sharedPreferences.getString("username", "");
-        String password= sharedPreferences.getString("password", "");
+        String username= sharedPreferences.getString("username", null);
+        String password= sharedPreferences.getString("password", null);
 
-        if(username.equals("admin") && password.equals("admin")){
+        if(username != null && password!=null){
             Intent intent = new Intent(SplashActivity.this,DashboardActivity.class);
             startActivity(intent);
             finish();

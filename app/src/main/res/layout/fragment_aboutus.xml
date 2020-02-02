@@ -131,14 +131,5 @@
             android:scaleType="fitXY"
             android:src="@drawable/insta" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Copyright by Shrawan shakya"
-        android:layout_marginTop="20dp"
-        android:gravity="center"/>
-
     </LinearLayout>
 </ScrollView>

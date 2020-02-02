@@ -1,5 +1,6 @@
 package com.digitalorder.np.ui.profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.digitalorder.np.CurrentLocation;
+import com.digitalorder.np.LoginActivity;
 import com.digitalorder.np.R;
 import com.digitalorder.np.api.UsersAPI;
 import com.digitalorder.np.model.UpdateMod;
@@ -38,6 +41,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
    private CircleImageView imgProgile;
    private EditText tvName,tvEmail,tvGender,tvPhone;
    private Button update;
+   private ImageView btnlogout;
    String ad;
 
     SharedPreferences preferences;
@@ -53,13 +57,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvEmail = root.findViewById(R.id.tvEmail);
         tvGender = root.findViewById(R.id.tvGender);
         tvPhone = root.findViewById(R.id.tvPhone);
+        btnlogout = root.findViewById(R.id.btnlogout);
 
         update = root.findViewById(R.id.update);
         update.setOnClickListener(this);
 
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.apply();
+
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         loadCurrentUser();
         return root;
     }
+
     private void loadCurrentUser() {
         // preferences = getSharedPreferences("UserData", 0);
 
@@ -127,8 +145,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         gender=tvGender.getText().toString();
 
        // Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
-
- //       SharedPreferences preferences=(getActivity()).getSharedPreferences("UserData",0);
+       // SharedPreferences preferences=(getActivity()).getSharedPreferences("UserData",0);
 
 //        String userName=preferences.getString("name",null);
 
@@ -146,5 +163,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 }
+

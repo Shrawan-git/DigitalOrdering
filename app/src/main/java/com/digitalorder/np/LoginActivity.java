@@ -13,6 +13,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnlogin;
     private String Username, Password;
     private SensorManager sm;
+    private CheckBox check;
 
     private float acelVal; //Current acceleration value and gravity
     private float acelLast; //Last acceleration value and gravity
@@ -43,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         edname = findViewById(R.id.edname);
         edpwd = findViewById(R.id.edpwd);
         txtsignup = findViewById(R.id.txtsignup);
+        check = findViewById(R.id.check);
         txtsignup.setPaintFlags(txtsignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         txtsignup.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 login();
+
             }
         });
 
@@ -99,6 +103,14 @@ public class LoginActivity extends AppCompatActivity {
 
         StrictModeClass.StrictMode();
         if (loginBLL.checkUser(name, password)) {
+
+            if(check.isChecked()){
+                SaveSharedPreferences();
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
             startActivity(intent);
             finish();
@@ -107,16 +119,13 @@ public class LoginActivity extends AppCompatActivity {
             edname.requestFocus();
         }
     }
-//    private void SaveSharedPreferences() {
-//        SharedPreferences sharedPreferences = this.getSharedPreferences("User", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        editor.putString("username",Username);
-//        editor.putString("password", Password);
-//        editor.commit();
-//
-//        Toast.makeText(this, "Successfully registered", Toast.LENGTH_SHORT).show();
-//    }
+    private void SaveSharedPreferences() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("User", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username",edname.getText().toString().trim());
+        editor.putString("password", edpwd.getText().toString().trim());
+        editor.commit();
+    }
 }
 
 
