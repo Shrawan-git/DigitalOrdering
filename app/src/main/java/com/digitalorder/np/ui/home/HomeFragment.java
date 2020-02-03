@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,11 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalorder.np.R;
-import com.digitalorder.np.adapter.ContactsAdapter;
+import com.digitalorder.np.adapter.OrderAdapter;
+import com.digitalorder.np.api.UsersAPI;
 import com.digitalorder.np.model.OrderMod;
+import com.digitalorder.np.url.Url;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     RecyclerView viewR;
@@ -26,65 +32,27 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         viewR = root.findViewById(R.id.recycleV);
-        pizzaButton = root.findViewById(R.id.pizzaButton);
-        burgerButton = root.findViewById(R.id.burgerButton);
-        saladButton = root.findViewById(R.id.saladButton);
 
-        pizzaButton.setOnClickListener(new View.OnClickListener() {
+        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+        Call<List<OrderMod>> orderCall = usersAPI.getOrderDetails(Url.token);
+
+        orderCall.enqueue(new Callback<List<OrderMod>>() {
             @Override
-            public void onClick(View v) {
-                // Create a list of contacts to display in RecyclerView
-                List<OrderMod> orderModList = new ArrayList<>();
-                // Adding all the contacts object in list
-                orderModList.add(new OrderMod("Salami Pizza" ,"$550", "Pizza", R.drawable.pizza));
-                orderModList.add(new OrderMod("Bacon Pizza" ,"$500", "Pizza",R.drawable.pizza1));
-                orderModList.add(new OrderMod("Salami Pizza" ,"$550", "Pizza",R.drawable.pizza));
-
-
-                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
-                viewR.setAdapter(contactsAdapter);
-
-                //Display all the contacts in linear layour (vertically)
+            public void onResponse(Call<List<OrderMod>> call, Response<List<OrderMod>> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<OrderMod> orderModList = response.body();
+                OrderAdapter orderAdapter = new OrderAdapter(getActivity(), orderModList);
+                viewR.setAdapter(orderAdapter);
                 viewR.setLayoutManager(new LinearLayoutManager(getActivity()));
             }
-        });
 
-        burgerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Create a list of contacts to display in RecyclerView
-                List<OrderMod> orderModList = new ArrayList<>();
-                // Adding all the contacts object in list
-                orderModList.add(new OrderMod("veggie burger" ,"$550", "Burger",R.drawable.burger));
-                orderModList.add(new OrderMod("ham burger" ,"$500", "Burger",R.drawable.burger));
-                orderModList.add(new OrderMod("Salami burger" ,"$550", "Burger",R.drawable.burger));
-
-                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
-                viewR.setAdapter(contactsAdapter);
-
-                //Display all the contacts in linear layour (vertically)
-                viewR.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-            }
-        });
-        saladButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create a list of contacts to display in RecyclerView
-                List<OrderMod> orderModList = new ArrayList<>();
-                // Adding all the contacts object in list
-                orderModList.add(new OrderMod("veggie salad" ,"$550", "Salad",R.drawable.salad));
-                orderModList.add(new OrderMod("mix salad" ,"$500", "Salad",R.drawable.salad1));
-                orderModList.add(new OrderMod("fresh salad" ,"$550", "Salad",R.drawable.salad));
-
-                ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(), orderModList);
-                viewR.setAdapter(contactsAdapter);
-
-                //Display all the contacts in linear layour (vertically)
-                viewR.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+            public void onFailure(Call<List<OrderMod>> call, Throwable t) {
+                Toast.makeText(getActivity(), "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         return root;

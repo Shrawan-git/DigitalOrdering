@@ -1,10 +1,13 @@
 package com.digitalorder.np.api;
 
+import com.digitalorder.np.model.OrderMod;
 import com.digitalorder.np.model.Product;
 import com.digitalorder.np.model.UpdateMod;
 import com.digitalorder.np.model.Users;
 import com.digitalorder.np.serverresponse.ImageResponse;
 import com.digitalorder.np.serverresponse.SignUpResponse;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -38,4 +41,7 @@ public interface UsersAPI {
 
     @PUT("user/UserUpdateAndroid")
     Call<String> updateProfile(@Header("Authorization") String token,@Body UpdateMod updateMod);
+
+    @GET("order")
+    Call<List<OrderMod>> getOrderDetails(@Header("Authorization")String token);
 }

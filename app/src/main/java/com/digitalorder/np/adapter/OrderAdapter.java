@@ -2,8 +2,7 @@ package com.digitalorder.np.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.digitalorder.np.Onclickfood;
 import com.digitalorder.np.R;
 import com.digitalorder.np.model.OrderMod;
+import com.digitalorder.np.strictmode.StrictModeClass;
+import com.digitalorder.np.url.Url;
 
-import java.nio.FloatBuffer;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>{
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ContactsViewHolder>{
 
     Context context;
     List<OrderMod> orderModList;
 
-    public ContactsAdapter(Context context, List<OrderMod> orderModList) {
+    public OrderAdapter(Context context, List<OrderMod> orderModList) {
         this.context = context;
         this.orderModList = orderModList;
     }
@@ -43,20 +45,27 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public void onBindViewHolder(@NonNull ContactsViewHolder holder, int position) {
         final OrderMod orderMod = orderModList.get(position);
 
-        holder.imgProfile.setImageResource(orderMod.getImageId());
-        holder.tvName.setText(orderMod.getName());
-        holder.tvPrice.setText(orderMod.getPrice());
-        holder.tvCategory.setText(orderMod.getCategory());
+        String imgPath = Url.imagePath + orderMod.getImage();
+        StrictModeClass.StrictMode();
+        try{
+            URL url = new URL(imgPath);
+            holder.imgProfile.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        holder.tvName.setText(orderMod.getFoodName());
+        holder.tvPrice.setText(orderMod.getFoodPrice());
+        holder.tvCategory.setText(orderMod.getFoodCategory());
 
         //Adding click listener in an imageview;
         holder.imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, Onclickfood.class);
-                intent.putExtra("Image", orderMod.getImageId());
-                intent.putExtra("Name", orderMod.getName());
-                intent.putExtra("Price", orderMod.getPrice());
-                intent.putExtra("Category", orderMod.getCategory());
+                intent.putExtra("Image", orderMod.getImage());
+                intent.putExtra("Name", orderMod.getFoodName());
+                intent.putExtra("Price", orderMod.getFoodPrice());
+                intent.putExtra("Category", orderMod.getFoodCategory());
                 context.startActivity(intent);
             }
         });

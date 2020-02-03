@@ -1,47 +1,47 @@
 package com.digitalorder.np.model;
 
 public class OrderMod {
-    private String name;
-    private String price;
-    private String category;
-    private int imageId;
+    private String image;
+    private String foodName;
+    private String foodPrice;
+    private String foodCategory;
 
-    public OrderMod(String name, String price, String category, int imageId) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.imageId = imageId;
+    public OrderMod(String image, String foodName, String foodPrice, String foodCategory) {
+        this.image = image;
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.foodCategory = foodCategory;
     }
 
-    public String getName() {
-        return name;
+    public String  getImage() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getPrice() {
-        return price;
+    public String getFoodName() {
+        return foodName;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
-    public String getCategory() {
-        return category;
+    public String getFoodPrice() {
+        return foodPrice;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setFoodPrice(String foodPrice) {
+        this.foodPrice = foodPrice;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getFoodCategory() {
+        return foodCategory;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setFoodCategory(String foodCategory) {
+        this.foodCategory = foodCategory;
     }
 }

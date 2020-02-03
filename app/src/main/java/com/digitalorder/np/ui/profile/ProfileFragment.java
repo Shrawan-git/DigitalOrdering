@@ -77,7 +77,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         loadCurrentUser();
         return root;
     }
-
     private void loadCurrentUser() {
         // preferences = getSharedPreferences("UserData", 0);
 
@@ -136,13 +135,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void updateProfile()
     {
 
-        String name,gender,email,phone;
+        String name,email,phone;
 
 //        uid = ad;
         name= tvName.getText().toString();
         email=tvEmail.getText().toString();
         phone=tvPhone.getText().toString();
-        gender=tvGender.getText().toString();
 
        // Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
        // SharedPreferences preferences=(getActivity()).getSharedPreferences("UserData",0);
@@ -163,7 +161,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
             }
         });
-
     }
 }
 

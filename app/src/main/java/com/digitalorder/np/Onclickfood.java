@@ -40,7 +40,6 @@ public class Onclickfood extends AppCompatActivity implements View.OnClickListen
 
             if(bundle !=null)
             {
-                img_view.setImageResource(bundle.getInt("Image"));
                 tv_name.setText(bundle.getString("Name"));
                 tv_price.setText(bundle.getString("Price"));
                 tv_category.setText(bundle.getString("Category"));
