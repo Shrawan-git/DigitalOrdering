@@ -34,6 +34,8 @@ public class HomeFragment extends Fragment {
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
         viewR = root.findViewById(R.id.recycleV);
         pizzaButton = root.findViewById(R.id.pizzaButton);
+        burgerButton = root.findViewById(R.id.burgerButton);
+        saladButton = root.findViewById(R.id.saladButton);
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<List<OrderMod>> orderCall = usersAPI.getOrderDetails(Url.token);
@@ -64,7 +66,7 @@ public class HomeFragment extends Fragment {
 
 
                 UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-                Call<List<OrderMod>> orderCall = usersAPI.getOrderCategory(Url.token);
+                Call<List<OrderMod>> orderCall = usersAPI.getPizzaCategory(Url.token);
 
                 orderCall.enqueue(new Callback<List<OrderMod>>() {
                     @Override
@@ -87,7 +89,66 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        burgerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+
+                UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+                Call<List<OrderMod>> orderCall = usersAPI.getBurgerCategory(Url.token);
+
+                orderCall.enqueue(new Callback<List<OrderMod>>() {
+                    @Override
+                    public void onResponse(Call<List<OrderMod>> call, Response<List<OrderMod>> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(getActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        List<OrderMod> orderModList = response.body();
+                        OrderAdapter orderAdapter = new OrderAdapter(getActivity(), orderModList);
+                        viewR.setAdapter(orderAdapter);
+                        viewR.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<OrderMod>> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
+        saladButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+                Call<List<OrderMod>> orderCall = usersAPI.getSaladCategory(Url.token);
+
+                orderCall.enqueue(new Callback<List<OrderMod>>() {
+                    @Override
+                    public void onResponse(Call<List<OrderMod>> call, Response<List<OrderMod>> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(getActivity(), "" + response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        List<OrderMod> orderModList = response.body();
+                        OrderAdapter orderAdapter = new OrderAdapter(getActivity(), orderModList);
+                        viewR.setAdapter(orderAdapter);
+                        viewR.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<OrderMod>> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
         return root;
     }
 }

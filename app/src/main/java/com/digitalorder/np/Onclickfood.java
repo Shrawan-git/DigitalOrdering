@@ -31,7 +31,7 @@ import retrofit2.http.Body;
 
 public class Onclickfood extends AppCompatActivity {
     ImageView img_view;
-    TextView tv_name, tv_price, tv_category;
+    TextView tv_name, tv_price, tv_category, tv_description;
     Button orderForm;
 
     @Override
@@ -45,13 +45,14 @@ public class Onclickfood extends AppCompatActivity {
         tv_name = findViewById(R.id.tv_name);
         tv_price = findViewById(R.id.tv_price);
         tv_category = findViewById(R.id.tv_category);
+        tv_description = findViewById(R.id.tv_description);
         orderForm = findViewById(R.id.orderForm);
 
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
             String img = bundle.getString("Image");
-OrderMod orderMod =new OrderMod(img,"","","");
+OrderMod orderMod =new OrderMod(img,"","","","");
 //            Bitmap bitmap = getIntent().getByteArrayExtra("Image");
 //            Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
 //            img_view.setImageBitmap(bmp);
@@ -66,6 +67,7 @@ OrderMod orderMod =new OrderMod(img,"","","");
             tv_name.setText(bundle.getString("Name"));
             tv_price.setText(bundle.getString("Price"));
             tv_category.setText(bundle.getString("Category"));
+            tv_description.setText(bundle.getString("Description"));
 //                String image=bundle.getString("dishImageName");
 //
 //                Picasso.with(this).load(image).into(img_view);

@@ -47,5 +47,11 @@ public interface UsersAPI {
     Call<List<OrderMod>> getOrderDetails(@Header("Authorization")String token);
 
     @GET("order/pizza")
-    Call<List<OrderMod>> getOrderCategory(@Header("Authorization")String token);
+    Call<List<OrderMod>> getPizzaCategory(@Header("Authorization")String token);
+
+    @GET("order/burger")
+    Call<List<OrderMod>> getBurgerCategory(@Header("Authorization")String token);
+
+    @GET("order/salad")
+    Call<List<OrderMod>> getSaladCategory(@Header("Authorization")String token);
 }

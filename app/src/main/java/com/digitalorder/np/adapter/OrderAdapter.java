@@ -66,6 +66,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ContactsView
                 intent.putExtra("Name", orderMod.getFoodName());
                 intent.putExtra("Price", orderMod.getFoodPrice());
                 intent.putExtra("Category", orderMod.getFoodCategory());
+                intent.putExtra("Description", orderMod.getFoodDescription());
                 context.startActivity(intent);
             }
         });
