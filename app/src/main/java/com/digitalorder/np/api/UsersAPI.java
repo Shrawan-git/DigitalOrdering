@@ -26,8 +26,9 @@ public interface UsersAPI {
     @POST("user/signup")
     Call<SignUpResponse> registerUser(@Body Users users);
 
-    @POST("user/order")
-    Call<String> orderUser(@Body Product product);
+    @POST("userorder")
+    Call<Void> orderUser(@Header("Authorization")String token,
+                           @Body Product product);
 
     @POST("user/login")
     Call<SignUpResponse> checkUser(@Body Users users);

@@ -1,35 +1,35 @@
 package com.digitalorder.np.model;
 
 public class Product {
-    String Foodname,Price,Category;
+    String foodName, foodPrice, foodCategory;
 
-    public Product(String foodname, String price, String category) {
-        Foodname = foodname;
-        Price = price;
-        Category = category;
+    public Product(String foodName, String foodPrice, String foodCategory) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.foodCategory = foodCategory;
     }
 
-    public String getFoodname() {
-        return Foodname;
+    public String getFoodName() {
+        return foodName;
     }
 
-    public void setFoodname(String foodname) {
-        Foodname = foodname;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
-    public String getPrice() {
-        return Price;
+    public String getFoodPrice() {
+        return foodPrice;
     }
 
-    public void setPrice(String price) {
-        Price = price;
+    public void setFoodPrice(String foodPrice) {
+        this.foodPrice = foodPrice;
     }
 
-    public String getCategory() {
-        return Category;
+    public String getFoodCategory() {
+        return foodCategory;
     }
 
-    public void setCategory(String category) {
-        Category = category;
+    public void setFoodCategory(String foodCategory) {
+        this.foodCategory = foodCategory;
     }
 }
