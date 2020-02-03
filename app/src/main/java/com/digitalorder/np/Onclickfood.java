@@ -3,6 +3,7 @@ package com.digitalorder.np;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.renderscript.Short4;
@@ -49,6 +50,19 @@ public class Onclickfood extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
+            String img = bundle.getString("Image");
+OrderMod orderMod =new OrderMod(img,"","","");
+//            Bitmap bitmap = getIntent().getByteArrayExtra("Image");
+//            Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
+//            img_view.setImageBitmap(bmp);
+            String imgPath = Url.imagePath + orderMod.getImage();
+            StrictModeClass.StrictMode();
+            try{
+                URL url = new URL(imgPath);
+                img_view.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             tv_name.setText(bundle.getString("Name"));
             tv_price.setText(bundle.getString("Price"));
             tv_category.setText(bundle.getString("Category"));
@@ -95,5 +109,6 @@ public class Onclickfood extends AppCompatActivity {
             }
         });
     }
+
 
 }

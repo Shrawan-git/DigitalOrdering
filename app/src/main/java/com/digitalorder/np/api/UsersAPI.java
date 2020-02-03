@@ -45,4 +45,7 @@ public interface UsersAPI {
 
     @GET("order")
     Call<List<OrderMod>> getOrderDetails(@Header("Authorization")String token);
+
+    @GET("order/pizza")
+    Call<List<OrderMod>> getOrderCategory(@Header("Authorization")String token);
 }
