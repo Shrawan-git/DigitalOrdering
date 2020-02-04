@@ -52,16 +52,14 @@ public class Onclickfood extends AppCompatActivity {
 
         if (bundle != null) {
             String img = bundle.getString("Image");
-OrderMod orderMod =new OrderMod(img,"","","","");
-//            Bitmap bitmap = getIntent().getByteArrayExtra("Image");
-//            Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
-//            img_view.setImageBitmap(bmp);
+            OrderMod orderMod = new OrderMod(img, "", "", "", "");
+
             String imgPath = Url.imagePath + orderMod.getImage();
             StrictModeClass.StrictMode();
-            try{
+            try {
                 URL url = new URL(imgPath);
-                img_view.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
-            }catch (Exception e){
+                img_view.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             tv_name.setText(bundle.getString("Name"));
@@ -82,20 +80,17 @@ OrderMod orderMod =new OrderMod(img,"","","","");
 
         }
         Toast.makeText(this, "Dish Name" + tv_name.getText().toString(), Toast.LENGTH_LONG).show();
-
-
     }
-
 
     private void orderFood() {
         String foodName = tv_name.getText().toString().trim();
         String foodPrice = tv_price.getText().toString().trim();
         String foodCategory = tv_category.getText().toString().trim();
 
-        Product product = new Product(foodName,foodPrice,foodCategory);
+        Product product = new Product(foodName, foodPrice, foodCategory);
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        Call<Void> orderCall = usersAPI.orderUser(Url.token,product);
+        Call<Void> orderCall = usersAPI.orderUser(Url.token, product);
 
         orderCall.enqueue(new Callback<Void>() {
             @Override

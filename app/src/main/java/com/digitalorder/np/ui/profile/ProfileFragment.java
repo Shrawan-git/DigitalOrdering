@@ -41,7 +41,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
    private CircleImageView imgProgile;
    private EditText tvName,tvEmail,tvGender,tvPhone;
    private Button update;
-   private ImageView btnlogout;
+   private Button btnlogout;
    String ad;
 
     SharedPreferences preferences;
@@ -67,6 +67,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
                 editor.apply();
 
                 Intent intent = new Intent(getActivity(), LoginActivity.class);

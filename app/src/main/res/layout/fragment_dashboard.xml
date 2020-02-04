@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleV"
         android:layout_width="411dp"
-        android:layout_height="75dp"
-        android:gravity="center"
-        android:text="Add Staff"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30dp"
-        android:textAllCaps="true"
+        android:layout_height="582dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+        android:paddingBottom="?attr/actionBarSize"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

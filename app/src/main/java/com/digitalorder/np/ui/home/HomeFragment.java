@@ -63,8 +63,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-
                 UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
                 Call<List<OrderMod>> orderCall = usersAPI.getPizzaCategory(Url.token);
 
@@ -93,8 +91,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-
                 UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
                 Call<List<OrderMod>> orderCall = usersAPI.getBurgerCategory(Url.token);
 
@@ -122,8 +118,6 @@ public class HomeFragment extends Fragment {
         saladButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
                 Call<List<OrderMod>> orderCall = usersAPI.getSaladCategory(Url.token);

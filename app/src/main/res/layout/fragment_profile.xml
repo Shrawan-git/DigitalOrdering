@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:paddingBottom="?attr/actionBarSize">
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgProgile"
             android:layout_width="150dp"

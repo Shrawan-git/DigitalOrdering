@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_margin="5dp"
+    cardView:cardCornerRadius="12dp"
+    cardView:cardElevation="3dp"
+    cardView:contentPadding="4dp"
+    cardView:cardBackgroundColor="#F0ECE8">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="104dp"
+            android:layout_marginLeft="104dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Food name"
+            android:textSize="30dp"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginLeft="112dp"
+            android:layout_marginTop="48dp"
+            android:text="Price"
+            android:textSize="20dp"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="@+id/tvName" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginLeft="112dp"
+            android:layout_marginTop="76dp"
+            android:text="Category"
+            android:textSize="20dp"
+            cardView:layout_constraintBottom_toBottomOf="parent"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="@+id/tvName"
+            cardView:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:background="@drawable/black_button"
+            android:textColor="@color/cardview_light_background"
+            cardView:layout_constraintEnd_toStartOf="@+id/tvName"
+            cardView:layout_constraintHorizontal_bias="0.218"
+            cardView:layout_constraintStart_toStartOf="parent"
+            cardView:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

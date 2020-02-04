@@ -30,6 +30,9 @@ public interface UsersAPI {
     Call<Void> orderUser(@Header("Authorization")String token,
                            @Body Product product);
 
+    @GET("userorder")
+    Call<List<Product>> orderUserDisplay(@Header("Authorization")String token);
+
     @POST("user/login")
     Call<SignUpResponse> checkUser(@Body Users users);
 

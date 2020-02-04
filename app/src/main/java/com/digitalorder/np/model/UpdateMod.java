@@ -31,7 +31,6 @@ public class UpdateMod {
     public String getPhone() {
         return phone;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }

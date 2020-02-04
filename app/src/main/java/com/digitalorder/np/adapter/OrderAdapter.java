@@ -23,7 +23,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ContactsViewHolder>{
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrdersViewHolder>{
 
     Context context;
     List<OrderMod> orderModList;
@@ -35,14 +35,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ContactsView
 
     @NonNull
     @Override
-    public ContactsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.home_view,parent,false);
-        return new ContactsViewHolder(view);
+        return new OrdersViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
         final OrderMod orderMod = orderModList.get(position);
 
         String imgPath = Url.imagePath + orderMod.getImage();
@@ -70,19 +70,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ContactsView
                 context.startActivity(intent);
             }
         });
-
     }
-
     @Override
     public int getItemCount() {
         return orderModList.size();
     }
 
-    public class ContactsViewHolder extends RecyclerView.ViewHolder{
+    public class OrdersViewHolder extends RecyclerView.ViewHolder{
 
         CircleImageView imgProfile;
         TextView tvName,tvPrice,tvCategory;
-        public ContactsViewHolder(@NonNull View itemView) {
+        public OrdersViewHolder(@NonNull View itemView) {
             super(itemView);
             imgProfile = itemView.findViewById(R.id.imgFood);
             tvName = itemView.findViewById(R.id.tvName);
