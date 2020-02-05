@@ -6,38 +6,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.digitalorder.np.CurrentLocation;
 import com.digitalorder.np.R;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class AboutFragment extends Fragment {
-    private LinearLayout btnlocation;
+public class AboutFragment extends Fragment implements OnMapReadyCallback {
     private ImageView twitter, facebook, gmail, insta;
+    private GoogleMap map;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_aboutus, container, false);
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+                mapFragment.getMapAsync(this);
 
-        btnlocation = root.findViewById(R.id.btnlocation);
         twitter = root.findViewById(R.id.twitter);
         facebook = root.findViewById(R.id.facebook);
         gmail = root.findViewById(R.id.gmail);
         insta = root.findViewById(R.id.insta);
-        btnlocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CurrentLocation.class);
-                startActivity(intent);
-            }
-        });
 
         twitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +72,21 @@ public class AboutFragment extends Fragment {
             }
         });
         return root;
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+
+        CameraUpdate center, zoom;
+        center = CameraUpdateFactory.newLatLng(new LatLng(27.706264, 85.30513));
+        zoom = CameraUpdateFactory.zoomTo(18);
+
+        map.addMarker(new MarkerOptions().position(new LatLng(27.706264, 85.30513)).title("This is the location"));
+        map.moveCamera(center);
+        map.animateCamera(zoom);
+        map.getUiSettings().setZoomControlsEnabled(true);
 
     }
 }

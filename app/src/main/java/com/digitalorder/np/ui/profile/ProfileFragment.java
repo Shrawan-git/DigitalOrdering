@@ -10,23 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.digitalorder.np.CurrentLocation;
 import com.digitalorder.np.LoginActivity;
 import com.digitalorder.np.R;
 import com.digitalorder.np.api.UsersAPI;
 import com.digitalorder.np.model.UpdateMod;
 import com.digitalorder.np.model.Users;
-import com.digitalorder.np.serverresponse.SignUpResponse;
 import com.digitalorder.np.strictmode.StrictModeClass;
-import com.digitalorder.np.ui.home.HomeFragment;
 import com.digitalorder.np.url.Url;
 
 import java.io.InputStream;
@@ -154,6 +148,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         updateProfileData.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                if(!response.isSuccessful())
                 Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
             }
             @Override

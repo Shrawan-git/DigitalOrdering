@@ -1,7 +1,10 @@
 package com.digitalorder.np;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     private String Username, Password;
     private SensorManager sm;
     private CheckBox check;
+    private NotificationManagerCompat notificationManagerCompat;
+    private int id =1;
 
     private float acelVal; //Current acceleration value and gravity
     private float acelLast; //Last acceleration value and gravity
@@ -40,6 +45,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        CreateChannel channel = new CreateChannel(this);
+        channel.createChannel();
 
         btnlogin = findViewById(R.id.btnlogin);
         edname = findViewById(R.id.edname);
@@ -59,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
-
             }
         });
 
@@ -102,9 +110,11 @@ public class LoginActivity extends AppCompatActivity {
 
         StrictModeClass.StrictMode();
         if (loginBLL.checkUser(name, password)) {
+            DisplayNotification();
 
             if(check.isChecked()){
                 SaveSharedPreferences();
+                DisplayNotification();
                 Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                 startActivity(intent);
                 finish();
@@ -124,6 +134,19 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("username",edname.getText().toString().trim());
         editor.putString("password", edpwd.getText().toString().trim());
         editor.commit();
+    }
+    private void DisplayNotification(){
+        String name = edname.getText().toString();
+
+        Notification notification = new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_info_black_24dp)
+                .setContentTitle("Welcome" +name)
+                .setContentText("Login successful")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManagerCompat.notify(id,notification);
+
     }
 }
 

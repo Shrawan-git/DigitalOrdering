@@ -1,7 +1,10 @@
 package com.digitalorder.np;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,11 +36,17 @@ public class Onclickfood extends AppCompatActivity {
     ImageView img_view;
     TextView tv_name, tv_price, tv_category, tv_description;
     Button orderForm;
+    private NotificationManagerCompat notificationManagerCompat;
+    private int id = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onclickfood);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        CreateChannel channel = new CreateChannel(this);
+        channel.createChannel();
 
         // List<OrderMod> productModelList;
 
@@ -74,6 +83,7 @@ public class Onclickfood extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     orderFood();
+                    DisplayNotification();
                 }
             });
 
@@ -105,6 +115,20 @@ public class Onclickfood extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void DisplayNotification() {
+        String name = tv_name.getText().toString();
+
+        Notification notification = new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_info_black_24dp)
+                .setContentTitle("You have ordered" + name)
+                .setContentText("Order successful")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManagerCompat.notify(id, notification);
+
     }
 
 

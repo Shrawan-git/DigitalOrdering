@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="?attr/actionBarSize">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -50,40 +51,13 @@
         android:textSize="20dp"
         android:textStyle="bold"
         />
-    <LinearLayout
-        android:id="@+id/btnlocation"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_default"
-        android:clickable="true"
-        android:padding="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:adjustViewBounds="true"
-            android:maxWidth="30dp"
-            android:maxHeight="30dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/location" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textSize="24sp"
-            android:paddingRight="30dp"
-            android:gravity="center"
-            android:text="Location" />
-
-    </LinearLayout>
-
-
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="30dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        />
 
     <TextView
         android:layout_width="match_parent"
