@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Orders Are Here"
+            android:textColor="@color/bgColorNight"
+            android:textSize="40dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/text_view_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Date"
+            android:textSize="25sp"
+            />
+
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleV"
@@ -15,4 +41,4 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
         android:paddingBottom="?attr/actionBarSize"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

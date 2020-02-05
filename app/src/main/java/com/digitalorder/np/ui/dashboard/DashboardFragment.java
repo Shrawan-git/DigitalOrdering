@@ -23,6 +23,8 @@ import com.digitalorder.np.model.OrderMod;
 import com.digitalorder.np.model.Product;
 import com.digitalorder.np.url.Url;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,6 +39,13 @@ public class DashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        TextView textViewDate = root.findViewById(R.id.text_view_date);
+        textViewDate.setText(currentDate);
+
         viewR = root.findViewById(R.id.recycleV);
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
