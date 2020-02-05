@@ -17,6 +17,7 @@
             android:text="Your Orders Are Here"
             android:textColor="@color/bgColorNight"
             android:textSize="40dp"
+            android:gravity="center"
             android:textStyle="bold"/>
 
         <TextView
@@ -25,15 +26,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Date"
+            android:textStyle="italic"
+            android:gravity="center"
             android:textSize="25sp"
             />
-
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleV"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="582dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

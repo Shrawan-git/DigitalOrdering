@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="410dp"
+            android:layout_width="match_parent"
             android:layout_height="85dp"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
@@ -40,18 +40,20 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
 
                     <Button
                         android:id="@+id/pizzaButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="72dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/white_button"
                         android:text="Pizza"
+                        android:gravity="center"
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="62dp" />
 
@@ -63,6 +65,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/black_button"
                         android:text="Burger"
+                        android:gravity="center"
                         android:textColor="@color/cardview_light_background"
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="62dp" />
@@ -75,6 +78,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/white_button"
                         android:text="Salad"
+                        android:gravity="center"
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="62dp" />
 
@@ -86,6 +90,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/black_button"
                         android:text="Seafood"
+                        android:gravity="center"
                         android:textColor="@color/cardview_light_background"
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="62dp" />
@@ -98,6 +103,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/white_button"
                         android:text="Soup"
+                        android:gravity="center"
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="62dp" />
 
@@ -107,8 +113,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleV"
-            android:layout_width="411dp"
-            android:layout_height="582dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="140dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

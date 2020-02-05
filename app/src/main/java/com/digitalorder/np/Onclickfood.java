@@ -35,7 +35,7 @@ import retrofit2.http.Body;
 public class Onclickfood extends AppCompatActivity {
     ImageView img_view;
     TextView tv_name, tv_price, tv_category, tv_description;
-    Button orderForm;
+    Button orderForm,favForm;
     private NotificationManagerCompat notificationManagerCompat;
     private int id = 2;
 
@@ -56,6 +56,7 @@ public class Onclickfood extends AppCompatActivity {
         tv_category = findViewById(R.id.tv_category);
         tv_description = findViewById(R.id.tv_description);
         orderForm = findViewById(R.id.orderForm);
+        favForm = findViewById(R.id.favForm);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -75,6 +76,13 @@ public class Onclickfood extends AppCompatActivity {
             tv_price.setText(bundle.getString("Price"));
             tv_category.setText(bundle.getString("Category"));
             tv_description.setText(bundle.getString("Description"));
+
+            favForm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    favFood();
+                }
+            });
 //                String image=bundle.getString("dishImageName");
 //
 //                Picasso.with(this).load(image).into(img_view);
@@ -92,6 +100,8 @@ public class Onclickfood extends AppCompatActivity {
         Toast.makeText(this, "Dish Name" + tv_name.getText().toString(), Toast.LENGTH_LONG).show();
     }
 
+
+
     private void orderFood() {
         String foodName = tv_name.getText().toString().trim();
         String foodPrice = tv_price.getText().toString().trim();
@@ -101,6 +111,30 @@ public class Onclickfood extends AppCompatActivity {
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<Void> orderCall = usersAPI.orderUser(Url.token, product);
+
+        orderCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(Onclickfood.this, "" + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+    private void favFood() {
+        String foodName = tv_name.getText().toString().trim();
+        String foodPrice = tv_price.getText().toString().trim();
+        String foodCategory = tv_category.getText().toString().trim();
+
+        Product product = new Product(foodName, foodPrice, foodCategory);
+
+        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+        Call<Void> orderCall = usersAPI.favouriteDetatil(Url.token, product);
 
         orderCall.enqueue(new Callback<Void>() {
             @Override

@@ -8,6 +8,7 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -24,15 +25,19 @@ import android.widget.Toast;
 import com.digitalorder.np.bll.LoginBLL;
 import com.digitalorder.np.strictmode.StrictModeClass;
 
+import java.util.EventListener;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText edname, edpwd;
     private TextView txtsignup;
     private Button btnlogin;
     private String Username, Password;
     private SensorManager sm;
+    private SensorManager sensorManager;
+    private Sensor gyroscopeSensor;
+    private SensorEventListener gyroscopeEventlistener;
     private CheckBox check;
     private NotificationManagerCompat notificationManagerCompat;
     private int id =1;
@@ -45,6 +50,27 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
+        if (gyroscopeSensor == null) {
+            Toast.makeText(this, "The device no gyro", Toast.LENGTH_SHORT).show();
+        }
+
+        gyroscopeEventlistener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.values[2] > 0.5f) {
+                    getWindow().getDecorView().setBackgroundColor(Color.GRAY);
+                } else if (event.values[2] < -0.5f) {
+                    getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
+                }
+            }
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
 
         notificationManagerCompat = NotificationManagerCompat.from(this);
         CreateChannel channel = new CreateChannel(this);
@@ -148,6 +174,20 @@ public class LoginActivity extends AppCompatActivity {
         notificationManagerCompat.notify(id,notification);
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(gyroscopeEventlistener, gyroscopeSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(gyroscopeEventlistener);
+    }
 }
+
+
+
 
 

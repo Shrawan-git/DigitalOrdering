@@ -1,6 +1,11 @@
 package com.digitalorder.np.ui.aboutus;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +26,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import static android.content.Context.SENSOR_SERVICE;
 
 public class AboutFragment extends Fragment implements OnMapReadyCallback {
     private ImageView twitter, facebook, gmail, insta;
@@ -71,7 +79,9 @@ public class AboutFragment extends Fragment implements OnMapReadyCallback {
                 startActivity(intent);
             }
         });
+
         return root;
+
 
     }
 
@@ -89,4 +99,7 @@ public class AboutFragment extends Fragment implements OnMapReadyCallback {
         map.getUiSettings().setZoomControlsEnabled(true);
 
     }
+
+
 }
+
