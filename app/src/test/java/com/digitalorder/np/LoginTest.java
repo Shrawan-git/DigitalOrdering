@@ -9,7 +9,7 @@ public class LoginTest {
     @Test
     public void testLogin(){
         LoginBLL loginBLL = new LoginBLL();
-        boolean result = loginBLL.checkUser("nischal","asd");
+        boolean result = loginBLL.checkUser("shrawan","shrawan");
         assertEquals(true,result);
     }
 }
