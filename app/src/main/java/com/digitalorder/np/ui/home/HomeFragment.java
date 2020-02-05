@@ -1,10 +1,12 @@
 package com.digitalorder.np.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.digitalorder.np.OrderRating;
 import com.digitalorder.np.R;
 import com.digitalorder.np.adapter.OrderAdapter;
 import com.digitalorder.np.api.UsersAPI;
@@ -27,12 +30,14 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     RecyclerView viewR;
     private Button pizzaButton, burgerButton, saladButton;
+    private ImageButton imageButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
         viewR = root.findViewById(R.id.recycleV);
+        imageButton = root.findViewById(R.id.imageButton);
         pizzaButton = root.findViewById(R.id.pizzaButton);
         burgerButton = root.findViewById(R.id.burgerButton);
         saladButton = root.findViewById(R.id.saladButton);
@@ -140,9 +145,9 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getActivity(), "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
+
         return root;
     }
 }

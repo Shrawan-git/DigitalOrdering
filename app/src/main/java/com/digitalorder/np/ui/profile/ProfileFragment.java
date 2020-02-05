@@ -68,7 +68,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-
         loadCurrentUser();
         return root;
     }
@@ -86,7 +85,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 //                Picasso.get().load(imgPath).into(imgProgile);
 
                 StrictModeClass.StrictMode();
@@ -131,7 +129,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     {
 
         String name,email,phone;
-
 //        uid = ad;
         name= tvName.getText().toString();
         email=tvEmail.getText().toString();

@@ -2,6 +2,7 @@ package com.digitalorder.np.api;
 
 import com.digitalorder.np.model.OrderMod;
 import com.digitalorder.np.model.Product;
+import com.digitalorder.np.model.Rating;
 import com.digitalorder.np.model.UpdateMod;
 import com.digitalorder.np.model.Users;
 import com.digitalorder.np.serverresponse.ImageResponse;
@@ -57,4 +58,8 @@ public interface UsersAPI {
 
     @GET("order/salad")
     Call<List<OrderMod>> getSaladCategory(@Header("Authorization")String token);
+
+    @POST("rating")
+    Call<Void> addRating(@Header("Authorization")String token,
+                         @Body Rating rating);
 }

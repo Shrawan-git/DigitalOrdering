@@ -26,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".OrderRating"></activity>
+        <activity android:name=".OrderActivity" />
         <activity android:name=".Onclickfood" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

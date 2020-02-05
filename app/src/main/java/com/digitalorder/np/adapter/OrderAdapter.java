@@ -6,12 +6,14 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalorder.np.Onclickfood;
+import com.digitalorder.np.OrderRating;
 import com.digitalorder.np.R;
 import com.digitalorder.np.model.OrderMod;
 import com.digitalorder.np.strictmode.StrictModeClass;
@@ -24,7 +26,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrdersViewHolder>{
-
     Context context;
     List<OrderMod> orderModList;
 
@@ -32,13 +33,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrdersViewHo
         this.context = context;
         this.orderModList = orderModList;
     }
-
     @NonNull
     @Override
     public OrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.home_view,parent,false);
         return new OrdersViewHolder(view);
+
     }
 
     @Override
@@ -70,6 +71,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrdersViewHo
                 context.startActivity(intent);
             }
         });
+
+        holder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OrderRating.class);
+                context.startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -80,12 +89,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrdersViewHo
 
         CircleImageView imgProfile;
         TextView tvName,tvPrice,tvCategory;
+        private ImageButton imageButton;
+
         public OrdersViewHolder(@NonNull View itemView) {
             super(itemView);
             imgProfile = itemView.findViewById(R.id.imgFood);
             tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvCategory = itemView.findViewById(R.id.tvCategory);
+            imageButton = itemView.findViewById(R.id.imageButton);
         }
     }
 }

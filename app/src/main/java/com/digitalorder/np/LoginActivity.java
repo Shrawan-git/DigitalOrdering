@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Notification notification = new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_info_black_24dp)
-                .setContentTitle("Welcome" +name)
+                .setContentTitle("Welcome" + name)
                 .setContentText("Login successful")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
