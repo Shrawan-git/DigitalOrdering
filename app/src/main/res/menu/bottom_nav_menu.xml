@@ -17,6 +17,11 @@
         android:title="My Profile" />
 
     <item
+        android:id="@+id/navigation_favourites"
+        android:icon="@drawable/heart"
+        android:title="Favourites" />
+
+    <item
         android:id="@+id/navigation_aboutus"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="About us" />

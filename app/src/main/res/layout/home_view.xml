@@ -17,7 +17,6 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgFood"
         android:layout_width="100dp"
@@ -69,11 +68,13 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="66dp"
-        android:layout_height="58dp"
+        android:layout_width="59dp"
+        android:layout_height="53dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:scaleType="fitXY"
+        android:src="@drawable/rate"
+        android:backgroundTint="@color/cardview_dark_background"
         cardView:layout_constraintEnd_toEndOf="parent"
         cardView:layout_constraintTop_toTopOf="parent" />
 
