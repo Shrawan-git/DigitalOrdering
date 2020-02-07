@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
    private CircleImageView imgProgile;
-   private EditText tvName,tvEmail,tvGender,tvPhone;
+   private EditText tvFullname, tvName,tvEmail,tvGender,tvPhone;
    private Button update;
    private Button btnlogout;
    String ad;
@@ -47,6 +47,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         imgProgile = root.findViewById(R.id.imgProgile);
+        tvFullname = root.findViewById(R.id.tvFullname);
         tvName = root.findViewById(R.id.tvName);
         tvEmail = root.findViewById(R.id.tvEmail);
         tvGender = root.findViewById(R.id.tvGender);
@@ -94,11 +95,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     imgProgile.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
 
                     //         String userId = response.body().get_id();
+                    String Fullname = response.body().getFullname();
                     String Name = response.body().getName();
                     String Email = response.body().getEmail();
                     String Phone = response.body().getPhone();
                     String Gender = response.body().getGender();
 
+                    tvFullname.setText(Fullname);
                     tvName.setText(Name);
                     tvEmail.setText(Email);
                     tvPhone.setText(Phone);
@@ -128,8 +131,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void updateProfile()
     {
 
-        String name,email,phone;
+        String fullname, name,email,phone;
 //        uid = ad;
+        fullname= tvFullname.getText().toString();
         name= tvName.getText().toString();
         email=tvEmail.getText().toString();
         phone=tvPhone.getText().toString();
@@ -139,7 +143,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 //        String userName=preferences.getString("name",null);
 
-        UpdateMod updateMod = new UpdateMod(name, email, phone);
+        UpdateMod updateMod = new UpdateMod(fullname, name, email, phone);
 
        Call<String> updateProfileData = usersAPI.updateProfile(Url.token,updateMod);
         updateProfileData.enqueue(new Callback<String>() {

@@ -41,7 +41,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrdersViewHo
         return new OrdersViewHolder(view);
 
     }
-
     @Override
     public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
         final OrderMod orderMod = orderModList.get(position);

@@ -31,7 +31,6 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
             this.context = context;
             this.productList = productList;
         }
-
         @NonNull
         @Override
         public FavouriteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +38,6 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
                     .inflate(R.layout.favourite_view,parent,false);
             return new FavouriteViewHolder(view);
         }
-
         @Override
         public void onBindViewHolder(@NonNull final FavouriteViewHolder holder, int position) {
             final Product product = productList.get(position);
@@ -74,14 +72,11 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
                     });
                 }
             });
-
         }
         @Override
         public int getItemCount() {
             return productList.size();
         }
-
-
         public class FavouriteViewHolder extends RecyclerView.ViewHolder{
 
             TextView tvName,tvPrice,tvCategory;

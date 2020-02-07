@@ -2,6 +2,7 @@ package com.digitalorder.np.model;
 
 public class Users {
    // private String _id;
+    private String fullname;
     private String name;
     private String password;
     private String email;
@@ -9,7 +10,8 @@ public class Users {
     private String image;
     private String gender;
 
-    public Users(String name, String email, String phone, String password, String image, String gender) {
+    public Users(String fullname, String name, String email, String phone, String password, String image, String gender) {
+        this.fullname = fullname;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -17,6 +19,14 @@ public class Users {
         this.image = image;
         this.gender= gender;
 
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getName() { return name; }

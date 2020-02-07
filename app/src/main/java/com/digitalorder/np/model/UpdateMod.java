@@ -1,15 +1,24 @@
 package com.digitalorder.np.model;
 
 public class UpdateMod {
+    private String fullname;
     private String name;
     private String email;
     private String phone;
-    private String gender;
 
-    public UpdateMod(String name, String email,String phone) {
+    public UpdateMod(String fullname, String name, String email,String phone) {
+        this.fullname = fullname;
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getName() {
