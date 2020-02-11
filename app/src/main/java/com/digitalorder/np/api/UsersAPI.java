@@ -13,6 +13,7 @@ import java.util.List;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -33,6 +34,9 @@ public interface UsersAPI {
 
     @GET("userorder")
     Call<List<Product>> orderUserDisplay(@Header("Authorization")String token);
+
+    @DELETE("userorder")
+    Call<List<Product>> orderUserDelete(@Header("Authorization")String token);
 
     @POST("favourite")
     Call<Void> favouriteDetatil(@Header("Authorization")String token,

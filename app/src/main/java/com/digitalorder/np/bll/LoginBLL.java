@@ -17,13 +17,12 @@ public class LoginBLL {
     public boolean checkUser(String name, String password) {
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        Call<SignUpResponse> usersCall = usersAPI.checkUser(new Users("",name,"",password,"", "",""));
+        Call<SignUpResponse> usersCall = usersAPI.checkUser(new Users("",name,"","",password, "",""));
 
         try {
             Response<SignUpResponse> loginResponse = usersCall.execute();
             if (loginResponse.isSuccessful() &&
                     loginResponse.body().getStatus().equals("Login success!")) {
-
                 Url.token += loginResponse.body().getToken();
                 // Url.Cookie = imageResponseResponse.headers().get("Set-Cookie");
                 isSuccess = true;

@@ -6,17 +6,25 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalorder.np.Onclickfood;
 import com.digitalorder.np.R;
+import com.digitalorder.np.api.UsersAPI;
 import com.digitalorder.np.model.Product;
+import com.digitalorder.np.url.Url;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OrdersViewHolder>{
 
@@ -37,12 +45,37 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OrdersViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrdersViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrdersViewHolder holder, final int position) {
         final Product product = productList.get(position);
 
         holder.tvName.setText(product.getFoodName());
         holder.tvPrice.setText(product.getFoodPrice());
         holder.tvCategory.setText(product.getFoodCategory());
+
+        holder.orderDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+                Call<List<Product>> voidCall = usersAPI.orderUserDelete(Url.token);
+
+                voidCall.enqueue(new Callback<List<Product>>() {
+                    @Override
+                    public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                        if (response.isSuccessful()){
+                            Toast.makeText(context, "deleted successfully", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(context, "" + response.code(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Product>> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
 
     }
     @Override
@@ -54,11 +87,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OrdersViewHold
     public class OrdersViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvName,tvPrice,tvCategory;
+        Button orderDelete;
         public OrdersViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvCategory = itemView.findViewById(R.id.tvCategory);
+            orderDelete = itemView.findViewById(R.id.orderDelete);
         }
     }
 }

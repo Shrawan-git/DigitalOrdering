@@ -119,7 +119,6 @@ public class Onclickfood extends AppCompatActivity {
                     Toast.makeText(Onclickfood.this, "" + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
 
