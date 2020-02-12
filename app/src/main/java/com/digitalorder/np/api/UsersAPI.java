@@ -22,6 +22,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface UsersAPI {
 
@@ -35,8 +36,8 @@ public interface UsersAPI {
     @GET("userorder")
     Call<List<Product>> orderUserDisplay(@Header("Authorization")String token);
 
-    @DELETE("userorder")
-    Call<List<Product>> orderUserDelete(@Header("Authorization")String token);
+    @DELETE("userorder/{foodName}")
+    Call<List<Product>> orderUserDelete(@Header("Authorization")String token, @Path("foodName") String foodName);
 
     @POST("favourite")
     Call<Void> favouriteDetatil(@Header("Authorization")String token,

@@ -39,6 +39,7 @@ public class Onclickfood extends AppCompatActivity {
     private NotificationManagerCompat notificationManagerCompat;
     private int id = 2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +104,7 @@ public class Onclickfood extends AppCompatActivity {
 
 
     private void orderFood() {
+
         String foodName = tv_name.getText().toString().trim();
         String foodPrice = tv_price.getText().toString().trim();
         String foodCategory = tv_category.getText().toString().trim();

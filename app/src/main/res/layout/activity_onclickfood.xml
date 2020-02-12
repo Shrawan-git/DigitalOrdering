@@ -68,6 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:background="@drawable/black_button"
+        android:textColor="@color/cardview_light_background"
         android:text="Order"/>
 
         <Button
@@ -76,6 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            android:background="@drawable/black_button"
+            android:textColor="@color/cardview_light_background"
             android:text="Add to favourite"/>
 
 </LinearLayout>

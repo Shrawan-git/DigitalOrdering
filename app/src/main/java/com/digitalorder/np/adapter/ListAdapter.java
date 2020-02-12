@@ -48,7 +48,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OrdersViewHold
     public void onBindViewHolder(@NonNull OrdersViewHolder holder, final int position) {
         final Product product = productList.get(position);
 
-        holder.tvName.setText(product.getFoodName());
+        holder.tvName.setText(product.getFoodName().trim());
         holder.tvPrice.setText(product.getFoodPrice());
         holder.tvCategory.setText(product.getFoodCategory());
 
@@ -56,7 +56,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OrdersViewHold
             @Override
             public void onClick(View v) {
                 UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-                Call<List<Product>> voidCall = usersAPI.orderUserDelete(Url.token);
+                Call<List<Product>> voidCall = usersAPI.orderUserDelete(Url.token, product.getFoodName());
 
                 voidCall.enqueue(new Callback<List<Product>>() {
                     @Override
@@ -68,7 +68,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OrdersViewHold
                             Toast.makeText(context, "" + response.code(), Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onFailure(Call<List<Product>> call, Throwable t) {
 
