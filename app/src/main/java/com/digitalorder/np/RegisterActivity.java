@@ -217,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterBLL registerBLL = new RegisterBLL();
 
         StrictModeClass.StrictMode();
-        if (registerBLL.signupUser(fullname, name, email, phone, password, imagePath, gender)) {
+        if (registerBLL.signupUser(fullname, name, email, phone, password, imageName, gender)) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

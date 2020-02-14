@@ -6,6 +6,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Notification;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digitalorder.np.api.UsersAPI;
+import com.digitalorder.np.bll.OrderBLL;
 import com.digitalorder.np.model.OrderMod;
 import com.digitalorder.np.model.Product;
 import com.digitalorder.np.model.Users;
@@ -98,34 +100,21 @@ public class Onclickfood extends AppCompatActivity {
 
 
         }
-        Toast.makeText(this, "Dish Name" + tv_name.getText().toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Dish Name " + tv_name.getText().toString(), Toast.LENGTH_LONG).show();
     }
 
-
-
     private void orderFood() {
-
         String foodName = tv_name.getText().toString().trim();
         String foodPrice = tv_price.getText().toString().trim();
         String foodCategory = tv_category.getText().toString().trim();
 
-        Product product = new Product(foodName, foodPrice, foodCategory);
+        OrderBLL orderBLL = new OrderBLL();
+        StrictModeClass.StrictMode();
+        if (orderBLL.orderUser(foodName, foodPrice, foodCategory)) {
+            Toast.makeText(Onclickfood.this, "" , Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        Call<Void> orderCall = usersAPI.orderUser(Url.token, product);
-
-        orderCall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(Onclickfood.this, "" + response.code(), Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-
-            }
-        });
     }
     private void favFood() {
         String foodName = tv_name.getText().toString().trim();
