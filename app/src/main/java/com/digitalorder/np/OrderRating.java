@@ -49,8 +49,6 @@ public class OrderRating extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Orderfeedback();
-                Intent intent = new Intent(OrderRating.this, HomeFragment.class);
-                startActivity(intent);
             }
         });
     }

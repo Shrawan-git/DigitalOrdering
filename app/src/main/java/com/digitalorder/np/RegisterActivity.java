@@ -25,6 +25,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.digitalorder.np.api.UsersAPI;
+import com.digitalorder.np.bll.RegisterBLL;
 import com.digitalorder.np.model.Users;
 import com.digitalorder.np.serverresponse.ImageResponse;
 import com.digitalorder.np.serverresponse.SignUpResponse;
@@ -213,28 +214,20 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton radioButton = findViewById(selectGender);
         gender= radioButton.getText().toString().trim();
 
-        Users users = new Users(fullname, name, email, phone, password, imageName, gender);
+        RegisterBLL registerBLL = new RegisterBLL();
 
-        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-        Call<SignUpResponse> signUpCall = usersAPI.registerUser(users);
-
-        signUpCall.enqueue(new Callback<SignUpResponse>() {
-            @Override
-            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+        StrictModeClass.StrictMode();
+        if (registerBLL.signupUser(fullname, name, email, phone, password, imagePath, gender)) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                return;
             }
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
-            @Override
-            public void onFailure(Call<SignUpResponse> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
 
     private  void loadCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

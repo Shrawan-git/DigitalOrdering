@@ -129,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     private void login(){
-        String name = edname.getText().toString();
-        String password = edpwd.getText().toString();
+        String name = edname.getText().toString().trim();
+        String password = edpwd.getText().toString().trim();
 
         LoginBLL loginBLL = new LoginBLL();
 

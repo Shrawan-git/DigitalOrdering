@@ -41,7 +41,7 @@ public interface UsersAPI {
 
     @POST("favourite")
     Call<Void> favouriteDetatil(@Header("Authorization")String token,
-                         @Body Product product);
+                                                 @Body Product product);
 
     @GET("favourite")
     Call<List<Product>> favouriteDetailList(@Header("Authorization")String token);
