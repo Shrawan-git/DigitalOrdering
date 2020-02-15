@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Dialog;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -118,7 +120,8 @@ public class LoginActivity extends AppCompatActivity {
             shake = shake * 0.9f + delta;
 
             if (shake > 12) {
-                Toast.makeText(LoginActivity.this, "This is the android assignment", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
             }
         }
 
@@ -185,7 +188,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onPause();
         sensorManager.unregisterListener(gyroscopeEventlistener);
     }
+
 }
+
 
 
 

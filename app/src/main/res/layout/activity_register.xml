@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:background="#FFCCCCCC">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Choose a photo"
+            android:text="Choose a picture"
             android:textStyle="italic" />
 
         <EditText
@@ -32,8 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/et_custom"
+            android:layout_marginTop="10dp"
             android:hint="Fullname"
-            android:padding="20dp" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/etname"
@@ -43,7 +45,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/et_custom"
             android:hint="Username"
-            android:padding="20dp" />
+            android:padding="15dp"  />
 
         <EditText
             android:id="@+id/etemail"
@@ -53,7 +55,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/et_custom"
             android:hint="Email"
-            android:padding="20dp" />
+            android:padding="15dp"  />
 
         <EditText
             android:id="@+id/etphone"
@@ -64,7 +66,7 @@
             android:background="@drawable/et_custom"
             android:hint="Phone number"
             android:inputType="number"
-            android:padding="20dp" />
+            android:padding="15dp"  />
 
         <RadioGroup
             android:id="@+id/myRadioGroup"
@@ -110,7 +112,7 @@
             android:background="@drawable/et_custom"
             android:hint="Password"
             android:inputType="textPassword"
-            android:padding="20dp" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/etcpwd"
@@ -121,8 +123,7 @@
             android:background="@drawable/et_custom"
             android:hint="Confirm Password"
             android:inputType="textPassword"
-            android:padding="20dp" />
-
+            android:padding="15dp"  />
 
         <Button
             android:id="@+id/btn"

@@ -45,10 +45,10 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     private CircleImageView profile_image;
-    private EditText etfullname,etname,etpwd,etemail,etphone, etcpwd;
+    private EditText etfullname, etname, etpwd, etemail, etphone, etcpwd;
     private Button btn;
     private RadioGroup myRadioGroup;
-    private RadioButton male,female,others;
+    private RadioButton male, female, others;
     String imagePath;
     String gender;
     private String imageName = "";
@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etpwd.getText().toString().equals(etcpwd.getText().toString())) {
                     if (validate()) {
-                        if(validateEmail()) {
+                        if (validateEmail()) {
                             if (validatePhone()) {
                                 saveImageOnly();
                                 signUp();
@@ -109,23 +109,24 @@ public class RegisterActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
-                    etpwd.requestFocus();
-                    return;
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
+                        etpwd.requestFocus();
+                        return;
+                    }
                 }
             }
-                }
         });
     }
+
     private boolean validatePhone() {
-        boolean status=true;
+        boolean status = true;
         if (etphone.getText().toString().length() < 10 || etphone.length() > 13) {
             etphone.setError("Not a valid phone number");
             status = false;
         }
-            return status;
-        }
+        return status;
+    }
 
     private boolean validateEmail() {
         String regEmail = etemail.getText().toString().trim();
@@ -142,10 +143,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean validate() {
-        boolean status=true;
+        boolean status = true;
         if (etname.getText().toString().length() < 6) {
             etname.setError("Minimum 6 character");
-            status=false;
+            status = false;
         }
         return status;
     }
@@ -155,18 +156,19 @@ public class RegisterActivity extends AppCompatActivity {
         intent.setType("image/*");
         startActivityForResult(intent, 1);
     }
-    private  void checkPermission(){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+
+    private void checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]
                     {
                             Manifest.permission.CAMERA
-                    },0);
+                    }, 0);
         }
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]
                     {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    },1);
+                    }, 1);
         }
 
     }
@@ -175,12 +177,12 @@ public class RegisterActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==0 && resultCode==RESULT_OK){
-            Bundle extras= data.getExtras();
-            Bitmap imageBitmap=(Bitmap)extras.get("data");
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
             profile_image.setImageBitmap(imageBitmap);
         }
-        if(requestCode==1 && resultCode==RESULT_OK) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
 
             if (data == null) {
                 Toast.makeText(this, "Plese select an image", Toast.LENGTH_LONG).show();
@@ -191,6 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
+
     private String getRealPathFromUri(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(),
@@ -203,7 +206,7 @@ public class RegisterActivity extends AppCompatActivity {
         return result;
     }
 
-    public  void signUp(){
+    public void signUp() {
         String fullname = etfullname.getText().toString().trim();
         String name = etname.getText().toString().trim();
         String email = etemail.getText().toString().trim();
@@ -212,30 +215,31 @@ public class RegisterActivity extends AppCompatActivity {
 
         int selectGender = myRadioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(selectGender);
-        gender= radioButton.getText().toString().trim();
+        gender = radioButton.getText().toString().trim();
 
         RegisterBLL registerBLL = new RegisterBLL();
 
         StrictModeClass.StrictMode();
         if (registerBLL.signupUser(fullname, name, email, phone, password, imageName, gender)) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                return;
-            }
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+            return;
         }
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 
-    private  void loadCamera(){
+    private void loadCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(this.getPackageManager()) != null){
+        if (intent.resolveActivity(this.getPackageManager()) != null) {
             startActivityForResult(intent, 0);
         }
 
     }
+
     private void saveImageOnly() {
         File file = new File(imagePath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
