@@ -96,7 +96,7 @@ public class SplashActivity extends AppCompatActivity {
         if(sensor != null){
             sensorManager.registerListener(proxListener,sensor, SensorManager.SENSOR_DELAY_NORMAL);
         }else{
-            Toast.makeText(this, "No sensor found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No sensor was found", Toast.LENGTH_SHORT).show();
         }
     }
 }
