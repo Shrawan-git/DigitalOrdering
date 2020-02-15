@@ -89,10 +89,8 @@ public class SplashActivity extends AppCompatActivity {
                   startActivity(homeIntent);
             }
             }
-
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
             }
         };
         if(sensor != null){

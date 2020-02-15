@@ -3,6 +3,11 @@ package com.digitalorder.np;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,10 +32,14 @@ public class OrderRating extends AppCompatActivity {
     private TextView rateNumber;
     private float ratefeedback;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_rating);
+
+
+
 
         rateNumber = findViewById(R.id.rateNumber);
         ratebar = findViewById(R.id.ratebar);
@@ -76,4 +85,6 @@ public class OrderRating extends AppCompatActivity {
             }
         });
     }
+
+
 }

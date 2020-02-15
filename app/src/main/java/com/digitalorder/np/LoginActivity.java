@@ -38,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     private String Username, Password;
     private SensorManager sm;
     private SensorManager sensorManager;
-    private Sensor gyroscopeSensor;
-    private SensorEventListener gyroscopeEventlistener;
     private CheckBox check;
     private NotificationManagerCompat notificationManagerCompat;
     private int id = 1;
@@ -52,28 +50,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-
-        if (gyroscopeSensor == null) {
-            Toast.makeText(this, "The device no gyro", Toast.LENGTH_SHORT).show();
-        }
-
-        gyroscopeEventlistener = new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent event) {
-                if (event.values[2] > 0.5f) {
-                    getWindow().getDecorView().setBackgroundColor(Color.GRAY);
-                } else if (event.values[2] < -0.5f) {
-
-                }
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            }
-        };
 
         notificationManagerCompat = NotificationManagerCompat.from(this);
         CreateChannel channel = new CreateChannel(this);
@@ -172,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Notification notification = new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_info_black_24dp)
-                .setContentTitle("Welcome" + name)
+                .setContentTitle("Welcome " + name)
                 .setContentText("Login successful")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
@@ -181,17 +157,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        sensorManager.registerListener(gyroscopeEventlistener, gyroscopeSensor, SensorManager.SENSOR_DELAY_FASTEST);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(gyroscopeEventlistener);
-    }
 
 }
 

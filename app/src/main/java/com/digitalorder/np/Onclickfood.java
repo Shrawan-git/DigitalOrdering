@@ -9,6 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.renderscript.Short4;
 import android.view.View;
@@ -40,12 +45,36 @@ public class Onclickfood extends AppCompatActivity {
     Button orderForm,favForm;
     private NotificationManagerCompat notificationManagerCompat;
     private int id = 2;
-
+    SensorManager sensorManager;
+    private Sensor gyroscopeSensor;
+    private SensorEventListener gyroscopeEventlistener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onclickfood);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
+        if (gyroscopeSensor == null) {
+            Toast.makeText(this, "The device no gyro", Toast.LENGTH_SHORT).show();
+        }
+
+        gyroscopeEventlistener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.values[2] > 0.5f) {
+                    getWindow().getDecorView().setBackgroundColor(Color.GRAY);
+                } else if (event.values[2] < -0.5f) {
+                    getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
 
         notificationManagerCompat = NotificationManagerCompat.from(this);
         CreateChannel channel = new CreateChannel(this);
@@ -100,7 +129,7 @@ public class Onclickfood extends AppCompatActivity {
 
 
         }
-        Toast.makeText(this, "Dish Name " + tv_name.getText().toString(), Toast.LENGTH_LONG).show();
+
     }
 
     private void orderFood() {
@@ -146,13 +175,23 @@ public class Onclickfood extends AppCompatActivity {
 
         Notification notification = new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_info_black_24dp)
-                .setContentTitle("You have ordered" + name)
+                .setContentTitle("You have ordered " + name)
                 .setContentText("Order successful")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
         notificationManagerCompat.notify(id, notification);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(gyroscopeEventlistener, gyroscopeSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(gyroscopeEventlistener);
+    }
 
 }

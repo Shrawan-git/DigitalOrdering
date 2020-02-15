@@ -74,6 +74,12 @@ public interface UsersAPI {
     @GET("order/salad")
     Call<List<OrderMod>> getSaladCategory(@Header("Authorization")String token);
 
+    @GET("order/seafood")
+    Call<List<OrderMod>> getSeafoodCategory(@Header("Authorization")String token);
+
+    @GET("order/soup")
+    Call<List<OrderMod>> getSoupCategory(@Header("Authorization")String token);
+
     @POST("rating")
     Call<Void> addRating(@Header("Authorization")String token,
                          @Body Rating rating);
