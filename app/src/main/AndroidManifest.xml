@@ -3,6 +3,7 @@
     package="com.digitalorder.np">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -27,7 +28,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize">
-        <activity android:name=".DialogActivity"></activity>
+        <activity android:name=".DialogActivity" />
         <activity android:name=".OrderRating" />
         <activity android:name=".Onclickfood" />
         <!--
@@ -54,7 +55,7 @@
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

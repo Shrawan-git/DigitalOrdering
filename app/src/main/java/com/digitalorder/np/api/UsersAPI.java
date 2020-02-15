@@ -46,6 +46,9 @@ public interface UsersAPI {
     @GET("favourite")
     Call<List<Product>> favouriteDetailList(@Header("Authorization")String token);
 
+    @DELETE("favourite/{foodName}")
+    Call<List<Product>> favouriteDelete(@Header("Authorization")String token, @Path("foodName") String foodName);
+
     @POST("user/login")
     Call<SignUpResponse> checkUser(@Body Users users);
 

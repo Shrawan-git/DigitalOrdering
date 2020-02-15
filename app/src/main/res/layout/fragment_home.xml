@@ -19,7 +19,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:text="Food Menu"
-            android:textSize="30dp"
+            android:textSize="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

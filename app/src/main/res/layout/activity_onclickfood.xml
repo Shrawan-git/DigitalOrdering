@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FFCCCCCC"
     tools:context=".Onclickfood">
 
     <LinearLayout
@@ -51,36 +52,36 @@
             android:layout_height="wrap_content"
             android:text="Description"
             android:gravity="center"
-            android:textSize="15dp"/>
+            android:textSize="20dp"/>
 
     <EditText
         android:id="@+id/tv_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="description"
+        android:text="Description"
         android:layout_margin="20dp"
         android:editable="false"
         android:textSize="20dp"/>
 
-    <Button
-        android:id="@+id/orderForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/black_button"
-        android:textColor="@color/cardview_light_background"
-        android:text="Order"/>
-
         <Button
-            android:id="@+id/favForm"
-            android:layout_width="wrap_content"
+            android:id="@+id/orderForm"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:background="@drawable/black_button"
-            android:textColor="@color/cardview_light_background"
-            android:text="Add to favourite"/>
+            android:text="Place Order"
+            android:textColor="@color/cardview_light_background" />
+
+        <Button
+            android:id="@+id/favForm"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/black_button"
+            android:text="Add to favourite"
+            android:textColor="@color/cardview_light_background" />
 
 </LinearLayout>
 

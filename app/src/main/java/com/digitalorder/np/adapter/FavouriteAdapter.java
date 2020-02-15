@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,7 +73,33 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
                     });
                 }
             });
+
+            holder.favdelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+                    Call<List<Product>> voidCall = usersAPI.favouriteDelete(Url.token, product.getFoodName());
+
+                    voidCall.enqueue(new Callback<List<Product>>() {
+                        @Override
+                        public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                            if (response.isSuccessful()){
+                                Toast.makeText(context, "deleted successfully", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(context, "" + response.code(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<List<Product>> call, Throwable t) {
+
+                        }
+                    });
+                }
+            });
+
         }
+
         @Override
         public int getItemCount() {
             return productList.size();
@@ -81,12 +108,14 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
 
             TextView tvName,tvPrice,tvCategory;
             Button favorder;
+            ImageView favdelete;
             public FavouriteViewHolder(@NonNull View itemView) {
                 super(itemView);
                 tvName = itemView.findViewById(R.id.tvName);
                 tvPrice = itemView.findViewById(R.id.tvPrice);
                 tvCategory = itemView.findViewById(R.id.tvCategory);
                 favorder = itemView.findViewById(R.id.favorder);
+                favdelete = itemView.findViewById(R.id.favdelete);
             }
         }
     }

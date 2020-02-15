@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private SensorEventListener gyroscopeEventlistener;
     private CheckBox check;
     private NotificationManagerCompat notificationManagerCompat;
-    private int id =1;
+    private int id = 1;
 
     private float acelVal; //Current acceleration value and gravity
     private float acelLast; //Last acceleration value and gravity
@@ -66,9 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (event.values[2] > 0.5f) {
                     getWindow().getDecorView().setBackgroundColor(Color.GRAY);
                 } else if (event.values[2] < -0.5f) {
-                    getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
+
                 }
             }
+
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
             }
@@ -115,13 +116,13 @@ public class LoginActivity extends AppCompatActivity {
             float z = event.values[2];
 
             acelLast = acelVal;
-            acelVal = (float) Math.sqrt((double) (x*x + y*y + z*z));
+            acelVal = (float) Math.sqrt((double) (x * x + y * y + z * z));
             float delta = acelVal - acelLast;
             shake = shake * 0.9f + delta;
 
             if (shake > 12) {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         }
 
@@ -131,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
-    private void login(){
+    private void login() {
         String name = edname.getText().toString().trim();
         String password = edpwd.getText().toString().trim();
 
@@ -141,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         if (loginBLL.checkUser(name, password)) {
             DisplayNotification();
 
-            if(check.isChecked()){
+            if (check.isChecked()) {
                 SaveSharedPreferences();
                 DisplayNotification();
                 Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
@@ -157,14 +158,16 @@ public class LoginActivity extends AppCompatActivity {
             edname.requestFocus();
         }
     }
+
     private void SaveSharedPreferences() {
         SharedPreferences sharedPreferences = this.getSharedPreferences("User", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username",edname.getText().toString().trim());
+        editor.putString("username", edname.getText().toString().trim());
         editor.putString("password", edpwd.getText().toString().trim());
         editor.commit();
     }
-    private void DisplayNotification(){
+
+    private void DisplayNotification() {
         String name = edname.getText().toString();
 
         Notification notification = new NotificationCompat.Builder(this, CreateChannel.CHANNEL_1)
@@ -174,9 +177,10 @@ public class LoginActivity extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
-        notificationManagerCompat.notify(id,notification);
+        notificationManagerCompat.notify(id, notification);
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
