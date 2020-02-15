@@ -17,17 +17,16 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class LoginTest {
+public class RateTest {
     @Rule
-    public ActivityTestRule<LoginActivity> testRule = new ActivityTestRule<>(LoginActivity.class);
-
-    private String edname = "biren123";
-    private String edpwd = "1234";
+    public ActivityTestRule<OrderRating> testRule = new ActivityTestRule<>(OrderRating.class);
+    private String feedbacker = "like it";
 
     @Test
-    public void LoginTest() throws Exception {
-        onView(withId(R.id.edname)).perform(typeText(edname),ViewActions.closeSoftKeyboard());
-        onView(withId(R.id.edpwd)).perform(typeText(edpwd),ViewActions.closeSoftKeyboard());
-        onView(withId(R.id.btnlogin)).perform(click());
+    public void RateTest() throws Exception {
+        onView(withId(R.id.ratebar)).perform(click(),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.feedbacker)).perform(typeText(feedbacker),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.btnSend)).perform(click());
+
     }
 }

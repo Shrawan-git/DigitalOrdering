@@ -44,6 +44,5 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
             onView(withId(R.id.etcpwd)).perform(typeText(etcpwd));
             closeSoftKeyboard();
             onView(withId(R.id.btn)).perform(click());
-
     }
 }

@@ -49,6 +49,7 @@ public class OrderRating extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Orderfeedback();
+                Toast.makeText(OrderRating.this, "Rated food", Toast.LENGTH_SHORT).show();
             }
         });
     }

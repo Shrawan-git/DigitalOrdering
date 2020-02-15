@@ -152,7 +152,6 @@ public class Onclickfood extends AppCompatActivity {
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
         notificationManagerCompat.notify(id, notification);
-
     }
 
 
