@@ -161,8 +161,6 @@ public class RegisterActivity extends AppCompatActivity {
             etname.setError("Type Confirm password");
         }
 
-
-
         if (etname.getText().toString().length() < 6) {
             etname.setError("Minimum 6 character");
             status = false;

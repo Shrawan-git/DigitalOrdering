@@ -56,7 +56,7 @@ public interface UsersAPI {
     @POST("upload")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
-    @GET("user/me")
+    @GET("user/profile")
     Call<Users> getUserDetails(@Header("Authorization") String token);
 
     @PUT("user/UserUpdateAndroid")

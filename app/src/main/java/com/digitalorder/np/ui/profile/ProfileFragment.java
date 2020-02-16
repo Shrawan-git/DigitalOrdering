@@ -36,7 +36,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
    private EditText tvFullname, tvName,tvEmail,tvGender,tvPhone;
    private Button update;
    private Button btnlogout;
-   String ad;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -86,7 +85,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                Picasso.get().load(imgPath).into(imgProgile);
 
                 StrictModeClass.StrictMode();
                 try {
@@ -94,7 +92,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     URL url = new URL(imgPath);
                     imgProgile.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
 
-                    //         String userId = response.body().get_id();
                     String Fullname = response.body().getFullname();
                     String Name = response.body().getName();
                     String Email = response.body().getEmail();
@@ -106,9 +103,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     tvEmail.setText(Email);
                     tvPhone.setText(Phone);
                     tvGender.setText(Gender);
-                    //       ad = userId;
-
-                    //           Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -118,7 +112,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<Users> call, Throwable t) {
 
-//                Toast.makeText(getActivity(), "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -132,16 +125,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     {
 
         String fullname, name,email,phone;
-//        uid = ad;
+
         fullname= tvFullname.getText().toString();
         name= tvName.getText().toString();
         email=tvEmail.getText().toString();
         phone=tvPhone.getText().toString();
-
-       // Toast.makeText(getActivity(), "User id: +" +ad, Toast.LENGTH_SHORT).show();
-       // SharedPreferences preferences=(getActivity()).getSharedPreferences("UserData",0);
-
-//        String userName=preferences.getString("name",null);
 
         UpdateMod updateMod = new UpdateMod(fullname, name, email, phone);
 
@@ -154,7 +142,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-               // Toast.makeText(getActivity(), "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_LONG).show();
             }
         });
