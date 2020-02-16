@@ -22,7 +22,6 @@ public class RegisterBLL {
         try{
             Response<SignUpResponse> signUpResponseResponse = registerResponseCall.execute();
             if(signUpResponseResponse.isSuccessful() && signUpResponseResponse.body().getStatus().equals("Signup success!")){
-                Url.token += signUpResponseResponse.body().getToken();
                 isSuccess = true;
             }
         }catch (IOException e){
