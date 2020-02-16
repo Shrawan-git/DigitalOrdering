@@ -80,8 +80,6 @@ public class Onclickfood extends AppCompatActivity {
         CreateChannel channel = new CreateChannel(this);
         channel.createChannel();
 
-        // List<OrderMod> productModelList;
-
         img_view = findViewById(R.id.img_view);
         tv_name = findViewById(R.id.tv_name);
         tv_price = findViewById(R.id.tv_price);
@@ -115,9 +113,6 @@ public class Onclickfood extends AppCompatActivity {
                     favFood();
                 }
             });
-//                String image=bundle.getString("dishImageName");
-//
-//                Picasso.with(this).load(image).into(img_view);
 
             orderForm.setOnClickListener(new View.OnClickListener() {
                 @Override
