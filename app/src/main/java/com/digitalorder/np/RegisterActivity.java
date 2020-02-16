@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
@@ -144,6 +145,24 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validate() {
         boolean status = true;
+
+        if(TextUtils.isEmpty(etfullname.getText().toString().trim())){
+            etfullname.setError("Type Fullname");
+        }
+
+        else if(TextUtils.isEmpty(etname.getText().toString().trim())){
+            etname.setError("Type Username");
+        }
+
+        else if(TextUtils.isEmpty(etpwd.getText().toString().trim())){
+            etname.setError("Type Password");
+        }
+        else if(TextUtils.isEmpty(etcpwd.getText().toString().trim())){
+            etname.setError("Type Confirm password");
+        }
+
+
+
         if (etname.getText().toString().length() < 6) {
             etname.setError("Minimum 6 character");
             status = false;
